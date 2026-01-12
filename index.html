@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anna Do - Portfolio</title>
+  <meta name="description" content="Portfolio of Anna Do - Business Information Systems student, developer, and designer." />
+  <link rel="stylesheet" href="styles.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+CA&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Keeping these is optional; safe to remove if not used -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Intro Overlay (message bubble) -->
+<div id="intro-overlay" aria-live="polite">
+  <div class="message-bubble" role="button" tabindex="0" aria-label="Enter site">
+    Welcome! 🐑<br>
+    I am very happy to have you here.<br>
+    Let’s start!
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <div class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-name">Anna Do</span>
+    </div>
+
+    <!-- JS toggle button (no checkbox) -->
+    <button class="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+
+    <nav id="primary-nav" class="nav-links" role="navigation" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#academic-projects">Academic Projects</a>
+      <a href="#aspirations">Aspirations</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-ghost" href="resume/resume_01012026.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Texas Christian University · Business Information Systems</span>
+        <h1 class="hero-title">
+  	Hello there! I'm Anna Do. <br>
+  	My Vietnamese name is Chau Anh Do <span class="ipa">/tʃoʊ æŋ doʊ/</span>.
+	</h1>
+        <p style="font-family: 'EB Garamond', serif; font-size: 1.1rem; line-height: 1.6; text-align: justify;">
+  I am currently a senior at Texas Christian University, graduating in May 2026 with a major in Business Information Systems. 
+  I love working with both data and people, finding the sweet spot between technical problem-solving and human connection. 
+  Beyond the technical side, I am also a dreamer at heart who enjoys creative projects, like writing a mystery-fantasy novel 
+  or experimenting with digital design. 
+  <br><br>
+  What I am most proud of is my ability to adapt, learn quickly, and make things happen even when they feel out of reach. 
+  I am looking for an environment that values curiosity, collaboration, and growth: a place where people support each other 
+  and get excited about creating meaningful work together.
+</p>
+<div class="hero-actions">
+  <a class="btn btn-primary" href="resume/resume_01012026.pdf" target="_blank" rel="noopener">My Resume</a>
+  <a class="btn btn-primary" href="#academic-projects">My Projects</a>
+  <a class="btn btn-ghost" href="#contact">Contact Me!</a>
+</div>
+      </div>
+<!-- Right column: single collage image -->
+<figure class="hero-collage">
+  <img src="images/IMG_4117.JPG" alt="Personal collage of Anna's photos">
+</figure>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+<section id="skills" class="container">
+  <h2 class="section-title">Skills</h2>
+
+  <!-- Technical Skills -->
+  <h3 class="sub-title">Technical Skills</h3>
+<div class="skill-bar">
+  <label>Java/Linux</label>
+  <div class="bar"><div class="fill" style="width: 40%" data-width="40"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Python</label>
+  <div class="bar"><div class="fill" style="width: 70%" data-width="70"></div></div>
+</div>
+<div class="skill-bar">
+  <label>SQL</label>
+  <div class="bar"><div class="fill" style="width: 85%" data-width="85"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Power BI/Tableau</label>
+  <div class="bar"><div class="fill" style="width: 80%" data-width="80"></div></div>
+</div>
+<div class="skill-bar">
+  <label>MS Visio/Project/Teams</label>
+  <div class="bar"><div class="fill" style="width: 90%" data-width="90"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Zoom/Slack/Discord</label>
+  <div class="bar"><div class="fill" style="width: 100%" data-width="100"></div></div>
+</div>
+
+  <!-- Soft Skills -->
+  <h3 class="sub-title">Soft Skills (based on Career Ready Assessment)</h3>
+<div class="skill-bar">
+  <label>Technology</label>
+  <div class="bar"><div class="fill" style="width: 100%" data-width="100"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Equity & Inclusion</label>
+  <div class="bar"><div class="fill" style="width: 98%" data-width="98"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Critical Thinking</label>
+  <div class="bar"><div class="fill" style="width: 94%" data-width="94"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Teamwork</label>
+  <div class="bar"><div class="fill" style="width: 92%" data-width="92"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Professionalism</label>
+  <div class="bar"><div class="fill" style="width: 100%" data-width="100"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Career & Self-Development</label>
+  <div class="bar"><div class="fill" style="width: 86%" data-width="86"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Communication</label>
+  <div class="bar"><div class="fill" style="width: 84%" data-width="84"></div></div>
+</div>
+<div class="skill-bar">
+  <label>Leadership</label>
+  <div class="bar"><div class="fill" style="width: 80%" data-width="80"></div></div>
+</div>
+ 
+<!-- Frameworks -->
+<h3 class="sub-title">Frameworks</h3>
+<ul class="framework-list">
+  <li>Agile</li>
+  <li>Scrum</li>
+  <li>Lean</li>
+  <li>Design Thinking</li>
+  <li>Systems Thinking</li>
+  <li>Ethical Analysis</li>
+  <li>SWOT</li>
+  <li>CAGE</li>
+  <li>PESTEL</li>
+  <li>MECE</li>
+  <li>Blue Ocean Strategy</li>
+  <li>Innovation Adoption Curve</li>
+</ul>
+
+  <!-- Certifications -->
+  <h3 class="sub-title">Certifications</h3>
+  <ul class="emoji-list">
+    <li>Microsoft Office Specialist Certification - Excel and PowerPoint</li>
+    <li>TESOL (in progress)</li>
+  </ul>
+</section>
+
+
+  <!-- Academic Projects -->
+<section id="academic-projects">
+  <div class="container">
+      <h2 class="section-title">Academic Projects</h2>
+      <div class="grid cols-3">
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+ 	          <img src="images/capstone-project.png" alt="Capstone Project Cover">
+	        </div>
+          <div class="card-body">
+            <h3>Healthcare Capstone Data Project</h3>
+            <p>
+              In this NDA-protected healthcare analytics engagement, I built a Python-driven data cleaning and validation workflow to improve data consistency and reporting readiness. 
+              While the deliverables are confidential, I’m happy to walk through my approach and design decisions.</p>
+            <div class="tags">
+              <span class="tag">Python Automation</span>
+              <span class="tag">Data Cleaning</span>
+              <span class="tag p">Data Quality</span>
+              <span class="tag p">Standardization & MDM</span>
+              <span class="tag p">Healthcare Analytics</span>
+            </div>
+	          <a href="capstone-project/capstone-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+	          </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+ 	          <img src="images/alteryx-project.png" alt="Alteryx and Tableau Project Cover">
+	        </div>
+          <div class="card-body">
+            <h3>Business Intelligence & Analytics Project</h3>
+            <p>In this project, I analyzed the Global Superstore dataset using Alteryx and Tableau to uncover customer behavior, cross-sell opportunities, regional loyalty patterns, and return insights.</p>
+            <div class="tags">
+              <span class="tag">Business Intelligence</span>
+              <span class="tag">Alteryx</span>
+              <span class="tag p">Tableau</span>
+              <span class="tag p">Customer Analytics</span>
+            </div>
+	          <a href="alteryx-project/alteryx-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+	          </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+ 	          <img src="images/sql-bi.png" alt="Business Intelligence and Data Management Project Cover">
+	        </div>
+          <div class="card-body">
+            <h3>Business Intelligence and Data Management Project</h3>
+            <p>In this project, I mainly worked with SQL and PowerBI to review and optimize the AdventureWorks 2017 database schema. This is part of my Data Management class.</p>
+            <div class="tags">
+              <span class="tag">SQL</span>
+              <span class="tag">Power BI</span>
+              <span class="tag p">Data Analysis</span>
+            </div>
+	          <a href="sql-project/bi-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+	          </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+            <img src="images/bpm-general.png" alt="Screenshot of Process Analysis and Systems Planning Project">
+          </div>
+          <div class="card-body">
+            <h3>Process Analysis and Systems Planning Project</h3>
+            <p>
+              This project focused on evaluating and redesigning business processes to improve efficiency and decision-making. 
+              Our team's main goal was to propose a cloud-based system plan that enhances inventory tracking and customer relationship management.
+            </p>
+            <div class="tags">
+              <span class="tag">Visio</span>
+              <span class="tag">Process Modeling</span>
+              <span class="tag p">Analysis</span>
+            </div>
+            <a href="system-planning-project/process-analysis.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+            <img src="images/instacart-project.png" alt="Global Business Project cover">
+          </div>
+          <div class="card-body">
+            <h3>Global Business Project (Instacart into India)</h3>
+            <p>
+              In this project, I worked on a team-based global business analysis evaluating Instacart’s potential expansion into India.
+              I applied market entry frameworks, competitive analysis, and ethical reasoning to develop a localized and responsible growth strategy <em>(not affiliated with, sponsored by, or endorsed by Instacart.)</em>
+            </p>
+            <div class="tags">
+              <span class="tag">Global Strategy</span>
+              <span class="tag">Market Entry</span>
+              <span class="tag p">CAGE &amp; PESTEL</span>
+              <span class="tag p">Ethical Analysis</span>
+            </div>
+            <a href="instacart-project/instacart-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+            </a>
+          </div>
+        </article>
+
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+            <img src="images/accounting-project.png" alt="Accounting Project cover">
+          </div>
+          <div class="card-body">
+            <h3>Accounting Project</h3>
+            <p>
+              In this project, I conducted a comparative financial analysis of Apple and Microsoft using multi-year 10-K filings.
+              I evaluated profitability, liquidity, efficiency, and stockholder value metrics to identify performance trends and strategic differences.
+            </p>
+            <div class="tags">
+              <span class="tag">Financial Analysis</span>
+              <span class="tag">Spreadsheet Modeling</span>
+              <span class="tag p">Data Interpretation</span>
+            </div>
+            <a href="accounting-project/accounting-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+            <img src="images/supply-chain-project.png" alt="Supply Chain Project cover">
+          </div>
+          <div class="card-body">
+            <h3>Supply Chain Management Project</h3>
+            <p>
+              In this project, I participated in a team-based supply chain simulation and served as VP of Operations.
+              I made data-driven decisions across production, warehousing, and labor planning to improve operational efficiency and ROI.
+            </p>
+            <div class="tags">
+              <span class="tag">VP of Operations</span>
+              <span class="tag">Capacity Planning</span>
+              <span class="tag p">Product Optimization</span>
+              <span class="tag p">ROI Growth</span>
+            </div>
+            <a href="supply-chain-project/supply-chain-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+            <img src="images/nike-project.png" alt="Nike Digital Transformation Project cover">
+          </div>
+          <div class="card-body">
+            <h3>Nike Digital Transformation Project</h3>
+            <p>
+              In this project, I worked on a hypothetical consulting proposal for Nike, 
+              designing a multi-year digital transformation strategy focused on emerging technologies, customer experience, and financial impact <em>(not affiliated with, sponsored by, or endorsed by Nike, Inc.)</em>
+            </p>
+            <div class="tags">
+              <span class="tag">Emerging Technologies</span>
+              <span class="tag">Customer Experience</span>
+              <span class="tag p">Strategic Transformation</span>
+            </div>
+            <a href="nike-digital/digital-transformation-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true">
+            <img src="images/chegg-project.png" alt="Chegg Consulting Project cover">
+          </div>
+          <div class="card-body">
+            <h3>Chegg Strategic Consulting Project</h3>
+            <p>
+              In this project, I developed a strategic outlook for Chegg in response to AI disruption and declining subscriptions <em>(not affiliated with, sponsored by, or endorsed by Chegg, Inc.) </em>
+            </p>
+            <div class="tags">
+              <span class="tag">Consulting</span>
+              <span class="tag">Blue Ocean Strategy</span>
+              <span class="tag p">Strategy Canvas</span>
+              <span class="tag p">Innovation Adoption Curve</span>
+            </div>
+            <a href="nike-digital/digital-transformation-project.html" target="_blank" class="project-link">
+              View Project <span class="icon">🔗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+<!-- Aspirations -->
+<section id="aspirations" class="container">
+  <h2 class="section-title">Aspirations</h2>
+
+  <p style="font-family: 'EB Garamond', serif; font-size: 1.1rem; line-height: 1.6; text-align: justify;">
+    In the long term, I am committed to leveraging my analytical background to improve the quality of life and well-being of
+    individuals who face systemic barriers. In particular, I am interested in how digital tools can broaden access to critical
+    services - such as platforms that help people locate food, shelter, and support resources.
+  </p>
+
+  <p class="asp-lead">
+    To translate this aspiration into practice, I am focusing on the following goals:
+  </p>
+
+  <ul class="asp-goals">
+    <li>Develop advanced analytical and data management skills through coursework and applied projects focused on real-world datasets.</li>
+    <li>Gain experience designing dashboards or digital tools that prioritize clarity, usability, and accessibility for diverse users.</li>
+    <li>Seek opportunities to collaborate with nonprofits, community organizations, or mission-driven teams addressing access to essential services.</li>
+    <li>Build a foundation for future work on platforms that help individuals locate resources such as housing, food assistance, and social support.</li>
+  </ul>
+
+</section>
+
+
+<!-- Contact -->
+<section id="contact" class="container">
+  <h2 class="section-title">I would love to connect!</h2>
+
+  <p class="contact-text">
+    Feel free to reach out if you would like to discuss opportunities, collaborations,
+    or simply learn more about me.
+  </p>
+
+  <div class="contact-actions">
+    <a class="btn btn-primary" href="mailto:dochauanh2203@gmail.com">Email me</a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/anhcdo/" target="_blank" rel="noopener">
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+
+  <!-- Resume anchor (so the nav button scrolls somewhere) -->
+  <section id="resume" class="container" aria-hidden="true" style="height:1px;"></section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
+  </div>
+</footer>
+
+<script>
+  // Auto year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Intro overlay — message bubble close on click/Enter
+  const overlay = document.getElementById('intro-overlay');
+  const bubble = document.querySelector('.message-bubble');
+
+  if (bubble) {
+    const closeOverlay = () => overlay.classList.add('hidden');
+    bubble.addEventListener('click', closeOverlay);
+    bubble.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        closeOverlay();
+      }
+    });
+  }
+
+  // Mobile nav toggle
+  const hamburger = document.querySelector('.hamburger-btn');
+  const body = document.body;
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      const open = body.classList.toggle('nav-open');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.overflow = open ? 'hidden' : ''; // lock scroll when open
+    });
+
+    // Close menu after clicking a link
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        body.classList.remove('nav-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+<script>
+  document.querySelectorAll('.skill-bar').forEach(bar => {
+    const fill = bar.querySelector('.fill');
+    const percent = fill.getAttribute('data-width'); 
+
+    // make wrapper row
+    const header = document.createElement('div');
+    header.className = 'skill-bar-header';
+
+    const label = bar.querySelector('label');
+    const rating = document.createElement('span');
+    rating.className = 'rating';
+    rating.textContent = `${percent}%`;
+
+    // move label + rating into header
+    header.appendChild(label);
+    header.appendChild(rating);
+
+    // insert header at top of .skill-bar
+    bar.insertBefore(header, bar.querySelector('.bar'));
+  });
+</script>
+
+
+</body>
+</html>
