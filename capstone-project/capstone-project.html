@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Analytics Capstone (NDA-Protected) - Anna Do</title>
+  <meta name="description" content="NDA-protected healthcare analytics capstone project. By Anna Do, Business Information Systems major at TCU." />
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink-600: #db2777;
+      --ribbon: #ffe4f0;
+      --bg: #fff8fb;
+      --sub-bg: #fff2f6;
+    }
+    
+    /* 🌸 Global EB Garamond theme */
+    body {
+      background: #fff8fb;
+      color: var(--text);
+      line-height: 1.75;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.1px;
+    }
+
+    h1, h2, h3, p, ul, li, button, iframe {
+      font-family: "EB Garamond", serif !important;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      color: var(--pink-600);
+      letter-spacing: 0.3px;
+      margin-top: 1.5em;
+    }
+    p, ul, li {
+      font-weight: 400;
+      font-size: 1.05rem;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+    ul li::marker {
+      color: var(--pink-600);
+    }
+
+    /* 🌷 Header */
+    .project-header {
+      background: #fff4f8;
+      text-align: center;
+      padding: 22px 20px;
+      border-bottom: 1px solid #f8dce8;
+      max-width: 780px;
+      margin: 40px auto 30px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
+    }
+    .project-header h1 {
+      font-size: 1.8rem;
+      margin: 0 0 6px;
+    }
+    .project-header p {
+      font-size: 1rem;
+      color: #b05278;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* 🌷 Content */
+    .project-content {
+      max-width: 780px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    /* 🎀 Main Ribbon Titles */
+    .project-content h2 {
+      position: relative;
+      display: inline-block;
+      background: var(--ribbon);
+      color: var(--pink-600);
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 6px 14px 6px 20px;
+      border-radius: 8px 20px 20px 8px;
+      margin: 24px 0 6px;
+      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
+    }
+    .project-content h2::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 10px solid var(--pink-600);
+    }
+
+        /* 🩰 Match BI Project bullet spacing */
+    .project-content ul {
+      margin-top: 4px;
+      margin-bottom: 10px;
+      padding-left: 22px; /* same indent as BI project */
+      line-height: 1.45; /* tighter list spacing */
+    }
+
+    .project-content li {
+      margin-bottom: 2px; /* minimal space between items */
+    }
+
+    .screenshot {
+      margin: 10px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.12);
+    }
+
+    .sql-block {
+      margin: 10px 0 12px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+      padding: 14px;
+      background: #fdf8fb;
+      border: 1px solid #f5d0e0;
+      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
+    }
+
+    .back-link {
+      margin-top: 24px;
+      font-size: 1rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+      background: #fff;
+      font-family: 'EB Garamond', serif;
+    }
+
+    footer .sheep {
+      transition: transform 0.3s ease;
+    }
+
+    footer:hover .sheep {
+      transform: translateX(6px);
+    }
+
+    .sql-link {
+      color: #db2777;
+      text-decoration: underline;
+      font-style: italic;
+    }
+
+    .sql-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* exactly 3 per row */
+      gap: 12px 18px; /* small vertical, a bit wider horizontal spacing */
+      margin-top: 8px;
+      justify-items: center;
+    }
+
+    .sql-gallery img {
+      width: 75%;              /* nicely compact thumbnail size */
+      max-width: 220px;        /* controls total width */
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .sql-gallery img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 10px rgba(244, 114, 182, 0.25);
+    }
+
+    /* Responsiveness for smaller screens */
+    @media (max-width: 850px) {
+      .sql-gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+      }
+    }
+    @media (max-width: 550px) {
+      .sql-gallery {
+        grid-template-columns: 1fr; /* single column on phones */
+      }
+    }
+
+      /* 🌸 Visual Carousel — Clean, Working, and Centered */
+      .visual-carousel {
+        position: relative;
+        background: #fff8fb;
+        border-radius: 16px;
+        padding: 28px 28px 60px;  /* ⬅ bottom padding for arrows */
+        box-shadow: 0 4px 16px rgba(244, 114, 182, 0.1);
+        margin-top: 16px;
+        overflow: hidden;
+      }
+
+      /* Each slide (image + text stacked vertically) */
+      .visual-slide {
+        display: none;                     /* only one visible at a time */
+        flex-direction: column;            /* stack image above text */
+        align-items: center;
+        justify-content: center;
+        gap: 14px;                         /* soft space between image + text */
+        width: 100%;
+        transition: opacity 0.5s ease;
+      }
+
+      .visual-slide.active {
+        display: flex;                     /* show active slide */
+      }
+
+      /* Huge focus on visuals */
+      .visual-slide img {
+        width: 90%;                        /* ⬅️ BIG beautiful visuals */
+        height: auto;
+        border-radius: 14px;
+        box-shadow: 0 6px 16px rgba(244, 114, 182, 0.15);
+        transition: transform 0.3s ease;
+      }
+
+      .visual-slide img:hover {
+        transform: scale(1.02);
+      }
+
+      /* Captions under the image */
+      .visual-text {
+        width: 90%;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #444;
+        margin-top: 8px;
+        text-align: left;   
+      }
+
+      .visual-text h3 {
+        text-align: center; 
+        color: #db2777;
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+        font-style: italic;
+      }
+
+
+      .visual-text p {
+        font-size: 1.05rem;
+        color: #444;
+        line-height: 1.5;
+      }
+
+      /* Navigation arrows — bottom-centered */
+      .nav {
+        position: absolute;
+        bottom: 14px;
+        background: rgba(255, 228, 240, 0.95);
+        border: none;
+        color: #db2777;
+        font-size: 1.4rem;
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(244, 114, 182, 0.25);
+        transition: background 0.2s ease, transform 0.2s ease;
+        z-index: 10;
+      }
+
+      .nav.prev { left: 45%; }
+      .nav.next { right: 45%; }
+
+      .nav:hover {
+        background: #fbcfe8;
+        transform: scale(1.1);
+      }
+
+      .nav.disabled {
+        opacity: 0.4;             /* look faded */
+        pointer-events: none;     /* can’t click */
+        background: #f8e6ef;      /* soft grey-pink background */
+        box-shadow: none;         /* no glow */
+      }
+
+      /* Responsive tweaks */
+      @media (max-width: 800px) {
+        .visual-slide {
+          flex-direction: column;
+        }
+        .visual-slide img, .visual-text {
+          width: 100%;
+        }
+        .nav.prev { left: 40%; }
+        .nav.next { right: 40%; }
+      }
+
+  </style>
+</head>
+
+<body>
+  <header class="project-header">
+    <h1>Capstone Healthcare Analytics Project (NDA-Protected)</h1>
+    <p>Python Automation · Data Cleaning · Data Quality · Standardization & MDM · Healthcare Analytics</p>
+  </header>
+
+  <main class="project-content">
+    <h2>Project Overview</h2>
+    <p>
+      This project was completed as part of a real-world healthcare analytics engagement under a <strong><em>Non-Disclosure Agreement (NDA)</em></strong>. 
+      Because of confidentiality requirements: proprietary data, internal systems, and deliverables cannot be shared publicly. 
+      All descriptions below are intentionally high-level and focus on <strong><em>process, tools, and decision-making</em></strong> rather than client-specific details.
+    </p>
+
+    <p>
+      My team's focused on improving data reliability and analytics readiness across multiple operational data sources within a large healthcare services organization. 
+      The primary challenge was transforming fragmented, inconsistent datasets into standardized, analytics-ready outputs that could support downstream reporting.
+    </p>
+
+    <h2>My Role & Contributions</h2>
+    <p>
+    I contributed to this project as part of the analytics and data engineering effort, with a primary focus on <strong>data cleaning, standardization, and pipeline design</strong>.
+    </p>
+
+    <p><strong>My responsibilities included:</strong></p>
+    <ul>
+      <li>Designing and implementing a Python-based data processing program to clean, validate, and standardize raw data files.</li>
+      <li>Developing logic to handle inconsistent formats, naming conventions, and field definitions across multiple data sources.</li>
+      <li>Creating reusable scripts that transformed raw exports into structured, analytics-ready datasets.</li>
+      <li>Implementing data quality checks to identify missing values, formatting issues, and inconsistencies prior to analysis.</li>
+      <li>Supporting downstream reporting and dashboard development by ensuring cleaned data met analytical requirements.</li>
+      <li>Participating in internal walkthroughs and demonstrations to explain data logic, assumptions, and outputs to stakeholders.</li>
+    </ul>
+
+    <p>
+    While I cannot share the code or outputs themselves, this work required translating ambiguous business requirements into clear technical logic and ensuring accuracy in a high-stakes, regulated environment.
+    </p> 
+
+    <h2>Tools & Skills</h2>
+    <ul>
+    <li>Python for data cleaning, transformation, and validation.</li>
+    <li>File-based data processing and automation workflows.</li>
+    <li>Data standardization and semantic alignment across sources.</li>
+    <li>Data quality checks and error handling.</li>
+    <li>Analytics pipeline design for reporting readiness.</li>
+    <li>Documentation and technical explanation for non-technical stakeholders.</li>
+    <li>Working responsibly with sensitive healthcare data under NDA constraints.</li>
+    </ul>
+
+    <h2>Process & Approach</h2>
+    <p>
+      I began by analyzing incoming data structures to identify inconsistencies in formats, definitions, and values. 
+      From there, I designed Python workflows that applied consistent transformation rules, enforced data standards, and produced clean outputs suitable for analytics and reporting.
+    </p>
+
+    <p><strong>Throughout the project, I prioritized:</strong></p>
+    <ul>
+      <li>Clear separation between raw and cleaned data.</li>
+      <li>Reusable and modular code design.</li>
+      <li>Validation steps to ensure transformations behaved as expected.</li>
+      <li>Documentation to make the logic understandable to collaborators.</li>
+      <li>Supporting downstream reporting and dashboard development by ensuring cleaned data met analytical requirements.</li>
+      <li>Participating in internal walkthroughs and demonstrations to explain data logic, assumptions, and outputs to stakeholders.</li>
+    </ul>
+
+    <p>
+      This approach helped reduce ambiguity in downstream analysis and supported more reliable reporting without exposing sensitive information.
+    </p>
+
+    <h2>Sample Solution</h2>
+
+    <div class="visual-carousel">
+      <button class="nav prev">❮</button>
+
+    <div class="visual-slide active">
+        <img src="sample-1.png" alt="Master Data Management">
+        <div class="visual-text">
+          <h3><i>Master Data Management</i></h3>
+        <p>
+          This sample illustrates the Master Data Management (MDM) framework we designed to define and standardize core data domains. 
+          It shows how broad MDM components, such as customer, supplier, and pricing data, were scoped specifically to the organization’s needs, focusing on patients, insurance claims, and payments. 
+          This structure helped clarify what data should be governed and aligned across systems.
+        </p>
+        </div>
+      </div>
+
+      <div class="visual-slide">
+        <img src="sample-2.png" alt="Python Cleaning Program">
+        <div class="visual-text">
+          <h3><i>Python Cleaning Tool</i></h3>
+          <p>
+            This interface shows a Python-based batch cleaning tool I designed to standardize raw text exports at scale. 
+            The tool allows users to select a folder of raw files and automatically applies predefined business rules to clean, validate, and structure the data. 
+            It outputs standardized files along with a generated quality report, improving transparency and auditability while reducing manual processing effort.</p>
+        </div>
+      </div>
+
+      <div class="visual-slide">
+        <img src="sample-3.png" alt="Demo Video">
+        <div class="visual-text">
+          <h3><i>Internal Demo Video</i></h3>
+          <p>
+            As part of the solution, we created an internal demo video to guide users through how to run and understand the data cleaning engine. 
+            The video explained the workflow, inputs and outputs, and how quality reports were generated, helping ensure the tool could be used 
+            consistently and correctly by non-technical stakeholders.</p>
+        </div>
+      </div>
+
+      <div class="visual-slide">
+        <img src="sample-4.png" alt="Client Knowledge Transfer">
+        <div class="visual-text">
+          <h3><i>Client Knowledge Transfer</i></h3>
+          <p>
+            As part of the solution, we delivered a comprehensive client knowledge transfer package in the form of a structured report and user-facing documentation. 
+            This included a clear explanation of the project context, assumptions, scope, approach, and solution design, along with guidance on how the system works and how it should be used going forward. 
+            The goal was to ensure the solution could be understood, maintained, and extended long-term.</p>
+        </div>
+      </div>
+
+      <!-- Can keep adding more slides the same way! -->
+
+      <button class="nav next">❯</button>
+    </div>
+
+    <h2>Reflection</h2>
+    <p>
+      This project was one of the most meaningful experiences in my academic career because it involved real constraints, real responsibility, and real impact.
+    </p>
+
+    <p>
+      Designing a Python-based data processing program helped me grow significantly as an analyst and problem solver. 
+      I gained a deeper appreciation for how much effort goes into preparing data before any insights are possible, and 
+      how important it is to clearly document assumptions and decisions when others rely on your work.
+    </p>
+
+    <p>
+     What stood out to me most was realizing how closely this technical work connects to social impact. 
+     In healthcare, data quality is not just a technical concern, but one that can influence operational decisions, resource allocation, and ultimately patient care. 
+     Being responsible for cleaning and standardizing sensitive healthcare data helped me see how analytical work extends beyond business goals 
+     and can directly shape decisions that affect people’s lives.
+    </p>
+
+<div style="text-align:center; margin-top:32px;">
+  <a href="../index.html#academic-projects"
+     class="back-link"
+     style="font-style:italic; text-decoration:underline; color:#db2777; font-family:'EB Garamond',serif;">
+    ← Back to Portfolio
+  </a>
+</div>
+
+</main>
+
+<footer>
+  <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const slides = document.querySelectorAll('.visual-slide');
+  const next = document.querySelector('.next');
+  const prev = document.querySelector('.prev');
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+
+    // disable arrows if at first or last slide
+    if (i === 0) {
+      prev.classList.add('disabled');
+    } else {
+      prev.classList.remove('disabled');
+    }
+
+    if (i === slides.length - 1) {
+      next.classList.add('disabled');
+    } else {
+      next.classList.remove('disabled');
+    }
+  }
+
+  next.addEventListener('click', () => {
+    if (index < slides.length - 1) {
+      index++;
+      showSlide(index);
+    }
+  });
+
+  prev.addEventListener('click', () => {
+    if (index > 0) {
+      index--;
+      showSlide(index);
+    }
+  });
+
+  // initialize on load
+  showSlide(index);
+</script>
+
+
+</body>
+</html>
+
