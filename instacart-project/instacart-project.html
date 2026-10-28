@@ -1,309 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global Business Project (Instacart into India) - Anna Do</title>
-  <meta name="description" content="Global business strategy project evaluating Instacart’s potential expansion into India. By Anna Do, Business Information Systems major at TCU." />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --pink-600: #db2777;
-      --ribbon: #ffe4f0;
-      --bg: #fff8fb;
-      --sub-bg: #fff2f6;
-    }
-
-    /* 🌸 Global */
-    body {
-      background: var(--bg);
-      color: #333;
-      font-family: "EB Garamond", serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0;
-      letter-spacing: 0.1px;
-    }
-    h1, h2, h3, p, ul, li, button, iframe {
-      font-family: "EB Garamond", serif !important;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-      color: var(--pink-600);
-      letter-spacing: 0.3px;
-      margin-top: 1.5em;
-    }
-    p, ul, li {
-      font-weight: 400;
-      font-size: 1.05rem;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-    ul li::marker {
-      color: var(--pink-600);
-    }
-
-    /* 🌷 Header */
-    .project-header {
-      background: #fff4f8;
-      text-align: center;
-      padding: 22px 20px;
-      border-bottom: 1px solid #f8dce8;
-      max-width: 780px;
-      margin: 40px auto 30px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
-    }
-    .project-header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px;
-    }
-    .project-header p {
-      font-size: 1rem;
-      color: #b05278;
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    /* 🌷 Content */
-    .project-content {
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-      line-height: 1.55;
-      font-size: 0.95rem;
-    }
-
-    /* 🎀 Main Ribbon Titles */
-    .project-content h2 {
-      position: relative;
-      display: inline-block;
-      background: var(--ribbon);
-      color: var(--pink-600);
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 6px 14px 6px 20px;
-      border-radius: 8px 20px 20px 8px;
-      margin: 24px 0 6px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
-    }
-    .project-content h2::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid var(--pink-600);
-    }
-
-        /* 🩰 Match BI Project bullet spacing */
-    .project-content ul {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 22px; /* same indent as BI project */
-      line-height: 1.45; /* tighter list spacing */
-    }
-
-    .project-content li {
-      margin-bottom: 2px; /* minimal space between items */
-    }
-
-    /* 🩰 Subsection Accordions */
-    .accordion-container {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .accordion-item {
-      margin-top: 14px;
-    }
-
-    .accordion-btn {
-      background: var(--sub-bg);
-      border: 1px solid #f2cce1;
-      color: #8f3a64; /* 🌸 softer mauve-rose text */
-      cursor: pointer;
-      padding: 12px 18px;
-      width: 100%;
-      text-align: left;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    }
-    .accordion-btn::before {
-      content: "▼";
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 1rem;
-      color: #b25684; /* softer pink arrow */
-      opacity: 0.9;
-    }
-    .accordion-btn:hover {
-      background-color: #fff3f7;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(244, 114, 182, 0.18);
-    }
-    .accordion-btn.active {
-      background-color: #fce6ef;
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.4s ease;
-      opacity: 0;
-      background-color: #fff8fb;
-      border-left: 3px solid #ffe4f0;
-      border-radius: 0 0 12px 12px;
-      padding: 0 8px;
-      margin-top: 2px;
-    }
-    .accordion-content.open {
-      opacity: 1;
-      padding: 12px 8px;
-    }
-
-    iframe {
-      border: 1px solid #f5d0e0;
-      border-radius: 10px;
-      background: #fff;
-      width: 100%;
-      height: 580px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
-      animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 🩷 Back link */
-    .back-link {
-      display: inline-block;
-      margin-top: 24px;
-      font-style: italic;
-      text-decoration: underline;
-      color: var(--pink-600);
-      font-size: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid #f8dce8;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      color: #999;
-      background: #fff;
-    }
-    footer .sheep {
-      transition: transform 0.3s ease;
-    }
-    footer:hover .sheep {
-      transform: translateX(6px);
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Instacart India Market Entry Strategy | Anna Do</title>
+<meta name="description" content="A global business case study assessing Instacart's potential entry into India through market analysis, partnership strategy, localized pricing, and ethical considerations." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../project.css">
+<style>
+.project-header{max-width:900px;padding:44px 32px;margin-top:35px;background:linear-gradient(135deg,#eaf0e1,#f7f6ec);border:1px solid #dce5d5}
+.project-header h1{font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.13;margin:10px 0 14px}
+.project-header p{line-height:1.6}
+.project-content{max-width:900px}
+.project-lede{font-size:1.19rem;line-height:1.7;color:#536c4c;margin:26px 0 34px}
+.project-content h2{margin-top:42px}
+.project-content h3{font-size:1.4rem;color:#536c4c;margin:26px 0 8px}
+.project-content p,.project-content li{line-height:1.72}
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0 34px}
+.metric{padding:20px 14px;border:1px solid #dce5d5;border-radius:15px;background:#fffefa;text-align:center}
+.metric strong{display:block;font-family:'EB Garamond',serif;font-size:2.1rem;color:#536c4c;line-height:1.1}
+.metric span{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;color:#65745f;line-height:1.5;margin-top:7px}
+.two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0}
+.info-card{background:#fffefa;border:1px solid #dce5d5;border-radius:15px;padding:18px 20px}
+.info-card h3{margin:0 0 9px;font-size:1.3rem}
+.info-card p:last-child,.info-card ul:last-child{margin-bottom:0}
+.note{padding:17px 20px;margin:22px 0;border-left:4px solid #a4b996;border-radius:0 12px 12px 0;background:#f0f4e9}
+.note p:last-child{margin-bottom:0}
+.marker-highlight{background:linear-gradient(178deg,transparent 5%,rgba(250,225,125,.12) 10%,rgba(250,225,125,.38) 25%,rgba(255,233,154,.48) 55%,rgba(250,225,125,.28) 85%,transparent 97%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:3px 7px;border-radius:12px 7px 14px 9px}
+.project-content .accordion-btn{font-family:'DM Sans',sans-serif;font-size:.92rem}
+.project-content .accordion-content.open{padding:18px 16px}
+.project-content .accordion-content iframe{display:block;width:100%;height:min(75vh,650px);border:1px solid #dce5d5;border-radius:8px}
+.pdf-link{display:inline-block;margin:8px 0 14px;color:#536c4c;font-weight:600}
+.small-print{font-family:'DM Sans',sans-serif;font-size:.81rem;color:#738d63}
+.site-footer{text-align:center;padding:30px 20px;border-top:1px solid #dce5d5;background:#f7f6ec}
+.site-footer p{margin:0;font-size:.85rem;color:#536c4c}
+@media(max-width:700px){.metric-grid{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}.project-header{padding:28px 20px}}
+</style>
 </head>
-
 <body>
-  <header class="project-header">
-    <h1>Global Business Project (Instacart into India)</h1>
-    <p>Global Strategy · Market Entry · CAGE &amp; PESTEL · Ethical Analysis</p>
-  </header>
-
-  <main class="project-content">
-    <h2>Project Overview</h2>
-    <p>
-	    This team-based Global Business project evaluated Instacart’s expansion into India through both a strategic and ethical lens. 
-	    Our goal was to assess market fit, competitive pressure, and operational feasibility, then recommend an entry approach that supports long-term growth.
-    </p>
-
-    <p>
-     	Using CAGE, PESTEL, and SWOT, we analyzed the key differences between the U.S. and India and how those factors would impact Instacart’s business model,
-	    especially around FDI limits, data privacy expectations, infrastructure constraints, and price sensitivity. We also compared major competitors in India’s online grocery
-	    and quick-commerce space (including Blinkit, BigBasket, and Swiggy), then proposed a launch strategy centered on Tier-1 metro markets and local partnership scaling.
-    </p>
-
-    <h2>Tools & Skills</h2>
-    <ul>
-    <li>Global market entry analysis using CAGE, PESTEL, and SWOT frameworks to evaluate expansion readiness.</li>
-    <li>Competitive analysis of India’s grocery delivery landscape (e.g., Blinkit, BigBasket, Swiggy) to identify differentiation and positioning.</li>
-    <li>Entry-mode evaluation and recommendation, including joint venture vs strategic alliance vs wholly owned approaches with India-specific regulatory considerations.</li>
-    <li>Marketing and sales planning: segmentation, pricing strategy, payments, and localization for Indian consumer behavior.</li>
-    </ul>
-
-    <h2>Project Documents</h2>
-    <div class="accordion-container">
-      <div class="accordion-item">
-        <button class="accordion-btn">Part 1: Business and Market Analysis of Instacart into India</button>
-        <div class="accordion-content">
-          <iframe src="instacart-report1.pdf"></iframe>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-btn">Part 2: Detailed Entry Strategy and Business Plan</button>
-        <div class="accordion-content">
-          <iframe src="instacart-report2.pdf"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <h2>Executive Presentation</h2>
-    <div class="accordion-container">
-      <div class="accordion-item">
-        <button class="accordion-btn">View Presentation Slides</button>
-        <div class="accordion-content">
-          <iframe src="instacart-presentation.pdf"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <h2>Reflection</h2>
-    <p>
-      This project helped me practice making expansion recommendations that balance strategy, operations, and ethics at the same time. Working through CAGE and PESTEL 
-      pushed me to think beyond “market size” and focus on what actually makes execution difficult, such as FDI restrictions, data privacy expectations, infrastructure limits, and pricing realities.
-      Personally, this became one of my favorite projects because I genuinely enjoy the market entry planning process. I loved digging into the research, comparing competitive landscapes, and thinking through how a company’s existing business model would need to adapt in a new country. 
-      The level of detail required, from regulatory considerations to consumer behavior and operational feasibility, made the analysis feel realistic and challenging in a good way.
-    </p>
-
-    <div style="text-align: center">
-      <a href="../index.html#academic-projects" class="back-link">← Back to Portfolio</a>
-    </div>
-  </main>
-
-  <footer>
-    <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const accordions = document.querySelectorAll(".accordion-btn");
-    accordions.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          content.classList.remove("open");
-        } else {
-          document.querySelectorAll(".accordion-content").forEach((c) => {
-            c.style.maxHeight = null;
-            c.classList.remove("open");
-            c.previousElementSibling.classList.remove("active");
-          });
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("open");
-        }
-      });
-    });
-  </script>
+<header class="project-header">
+<h1>Instacart India Market Entry Strategy</h1>
+<p>International Expansion · CAGE, PESTEL &amp; SWOT · Competitive Analysis · Ethical Business Strategy</p>
+</header>
+<main class="project-content">
+<p class="project-lede"><span class="marker-highlight">What would it take for Instacart to enter India's fast-moving online grocery market? Our team evaluated the opportunity through cultural, regulatory, competitive, and ethical lenses, then developed a localized market-entry proposal designed around partnerships and long-term viability.</span></p>
+<div class="metric-grid" aria-label="Project at a glance">
+<div class="metric"><strong>4</strong><span>team members</span></div>
+<div class="metric"><strong>5</strong><span>market-entry modes evaluated</span></div>
+<div class="metric"><strong>4</strong><span>Tier-1 launch cities proposed</span></div>
+</div>
+<div class="note"><p><strong>Project context.</strong> This was an academic market-entry recommendation, not an actual Instacart expansion or partnership announcement. Proposed fees, market assumptions, and regulatory interpretations reflect our original research, not verified current business conditions.</p></div>
+<h2>01 · The Market Opportunity</h2>
+<p>India's growing digital commerce ecosystem, smartphone adoption, and demand for convenient grocery delivery made it a compelling expansion market to investigate. Yet entering the market would require more than translating an existing app: Instacart would need to adapt to price-sensitive customers, trusted neighborhood retailers, local delivery constraints, and a crowded quick-commerce landscape.</p>
+<p>Our central question was how Instacart could use its marketplace and retailer-partnership strengths while developing a model suited to India's consumer expectations and regulatory environment.</p>
+<h2>02 · Cross-Border Market Analysis</h2>
+<p>We used <strong>SWOT, CAGE, and PESTEL</strong> to evaluate both Instacart's competitive position and the differences between its home market and India. This helped us connect broad market conditions to practical choices about platform design, delivery operations, partnerships, and customer acquisition.</p>
+<div class="two-col">
+<div class="info-card"><h3>Cultural &amp; consumer fit</h3><ul><li>Language diversity and regional shopping preferences</li><li>Strong consumer relationships with local Kirana stores</li><li>Family-oriented purchasing decisions and trust</li><li>Price sensitivity and demand for convenience</li></ul></div>
+<div class="info-card"><h3>Regulatory &amp; operational fit</h3><ul><li>Foreign-investment constraints affecting e-commerce models</li><li>Customer-data protection and responsible platform design</li><li>Traffic, delivery reliability, and infrastructure gaps</li><li>Digital payments, including UPI integration</li></ul></div>
+</div>
+<h2>03 · Competition &amp; Positioning</h2>
+<p>Our competitive review examined <strong>Blinkit, BigBasket, Swiggy Instamart</strong>, and other grocery options, including Amazon Fresh and traditional Kirana stores. We considered local competitors' convenience, pricing, delivery networks, and existing customer relationships rather than assuming Instacart's North American model would transfer unchanged.</p>
+<p>We identified potential differentiation in flexible delivery scheduling, retailer partnerships, transparent customer communication, and a localized experience that combines convenience with familiarity and trust.</p>
+<h2>04 · Recommended Entry Strategy</h2>
+<p>We compared <strong>joint ventures, strategic alliances, wholly owned subsidiaries, brownfield investments, and greenfield investments</strong> against regulatory considerations, startup costs, operational control, and fit with Instacart's asset-light marketplace model.</p>
+<div class="note"><p><strong>Our recommendation: a locally partnered joint venture.</strong> The proposed approach would share financial and operational risk, provide access to established distribution networks and local expertise, and support adaptation to market-specific requirements. The team discussed companies such as Reliance Retail and BigBasket as illustrative potential partners, not confirmed collaborators.</p></div>
+<p>The strategy favored a phased launch in <strong>Mumbai, Delhi, Bengaluru, and Hyderabad</strong>, targeting digitally connected urban households before expanding into additional markets.</p>
+<h2>05 · Localized Marketing &amp; Pricing</h2>
+<p>Our proposed go-to-market plan focused on urban middle-class households, convenience-seeking professionals, price-conscious shoppers, and families. It combined regional messaging, festive promotions, referral programs, Kirana partnerships, and mobile-first sales channels.</p>
+<div class="two-col">
+<div class="info-card"><h3>Customer experience</h3><ul><li>Local-language and culturally relevant messaging</li><li>UPI and other familiar payment options</li><li>Partnerships with neighborhood retailers</li><li>Flexible delivery and family-focused promotions</li></ul></div>
+<div class="info-card"><h3>Illustrative pricing proposal</h3><ul><li>Free standard delivery above ₹500</li><li>₹30 fee for smaller orders</li><li>₹50–₹75 expedited delivery options</li><li>Optional India-specific membership pricing</li></ul></div>
+</div>
+<p class="small-print">These were proposed pricing scenarios in the team's business plan, not live Instacart India offerings.</p>
+<h2>06 · Ethical Business Considerations</h2>
+<p>We also evaluated the risks of applying a contractor-heavy gig-work model in a new labor market. Our analysis considered worker classification, fairness, stakeholder interests, service quality, and the tension between low delivery costs and adequate worker protections.</p>
+<p>To address these concerns, we recommended exploring a <strong>hybrid employment model</strong>, worker support and training, collaboration with local stakeholders, public labor commitments, and a limited pilot before broader scaling. This connected the ethical analysis directly to the operating strategy rather than treating it as a separate compliance exercise.</p>
+<h2>07 · Project Deliverables</h2>
+<p>The original reports and presentation document the research, strategic alternatives, market positioning, pricing scenarios, and ethical recommendations behind this proposal.</p>
+<div class="accordion-container">
+<div class="accordion-item"><button class="accordion-btn" type="button" aria-expanded="false">Part 1 · Business &amp; Market Analysis</button><div class="accordion-content"><a class="pdf-link" href="instacart-report1.pdf" target="_blank" rel="noopener">Open PDF in a new tab ↗</a><iframe src="instacart-report1.pdf" title="Instacart Business and Market Analysis" loading="lazy"></iframe></div></div>
+<div class="accordion-item"><button class="accordion-btn" type="button" aria-expanded="false">Part 2 · Entry Strategy &amp; Business Plan</button><div class="accordion-content"><a class="pdf-link" href="instacart-report2.pdf" target="_blank" rel="noopener">Open PDF in a new tab ↗</a><iframe src="instacart-report2.pdf" title="Instacart Entry Strategy and Business Plan" loading="lazy"></iframe></div></div>
+<div class="accordion-item"><button class="accordion-btn" type="button" aria-expanded="false">Executive Presentation · Instacart into India</button><div class="accordion-content"><a class="pdf-link" href="instacart-presentation.pdf" target="_blank" rel="noopener">Open PDF in a new tab ↗</a><iframe src="instacart-presentation.pdf" title="Instacart India Executive Presentation" loading="lazy"></iframe></div></div>
+</div>
+<h2>08 · Reflection</h2>
+<p>This was one of my favorite academic projects because I genuinely enjoy market-entry planning. I loved exploring a new competitive landscape and asking how a familiar business model would need to change to succeed in a different country.</p>
+<p>Working through CAGE, PESTEL, and the entry-mode comparison taught me to look beyond market size and consider the details that determine whether an expansion is realistic: regulations, infrastructure, consumer trust, pricing, and partnerships. The ethical component was especially valuable because it reminded me that a strategy can be commercially attractive on paper while still requiring thoughtful decisions about the people who make it work.</p>
+<div style="text-align:center"><a href="../index.html#projects" class="back-link">← Back to Portfolio</a></div>
+</main>
+<script src="../project.js"></script>
+<footer class="site-footer"><p>© 2026 Anna Do. All rights reserved.</p></footer>
 </body>
 </html>

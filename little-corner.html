@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F7F6EC">
+  <title>My Little Corner ♡ | Anna Do</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #F7F6EC;
+      --sage: #E4EBD9;
+      --forest: #536C4C;
+      --dark: #3D493C;
+      --muted: #738D63;
+      --border: #DCE5D5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    button, a {
+      font: inherit;
+    }
+
+    /* Navigation */
+
+    .corner-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,246,236,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      color: var(--forest);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      color: var(--forest);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .tab-btn:hover {
+      background: var(--sage);
+    }
+
+    .tab-btn.active {
+      background: var(--forest);
+      color: white;
+      border-color: var(--forest);
+    }
+
+    /* Tab panels */
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Photo collections */
+
+    .collections-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 90px;
+    }
+
+    .gallery {
+      columns: 3;
+      column-gap: 10px;
+    }
+
+    .gallery-item {
+      display: block;
+      width: 100%;
+      margin: 0 0 10px;
+      padding: 0;
+      border: none;
+      background: var(--sage);
+      cursor: zoom-in;
+      break-inside: avoid;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform .35s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.025);
+    }
+
+    .gallery-empty {
+      text-align: center;
+      padding: 90px 20px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .gallery-empty h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    /* Blogs */
+
+    .blogs-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 90px 24px 120px;
+      min-height: 75vh;
+    }
+
+    .section-kicker {
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+    }
+
+    .blogs-wrap h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 5rem);
+      font-weight: 600;
+      margin: 15px 0;
+    }
+
+    .blogs-description {
+      color: var(--muted);
+      margin-bottom: 45px;
+      line-height: 1.7;
+    }
+
+    .blog-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px;
+    }
+
+    .blog-card h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.2rem;
+      margin: 14px 0;
+    }
+
+    .blog-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    /* Photo lightbox */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,20,15,.94);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 88vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+ 
+    /* Blog preview with thumbnail */
+    .blog-preview {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .blog-thumbnail {
+      width: 190px;
+      height: 210px;
+      flex-shrink: 0;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 14px;
+    }
+
+    .blog-preview-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .blog-preview-content h2 {
+      margin: 12px 0;
+    }
+
+    .blog-preview-content p {
+      margin-bottom: 20px;
+    }
+
+    /* Matcha green blog link */
+    .blog-preview .journal-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #536C4C;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid #A9B99D;
+      padding-bottom: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .blog-preview .journal-link:hover {
+      color: #738D63;
+      border-bottom-color: #738D63;
+    }
+
+    /* Mobile-friendly layout */
+    @media (max-width: 600px) {
+      .blog-preview {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+      }
+
+      .blog-thumbnail {
+        width: 100%;
+        height: 190px;
+      }
+    }
+
+    /* Responsive */
+
+    @media (max-width: 800px) {
+      .gallery {
+        columns: 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-inner {
+        padding: 14px;
+      }
+
+      .back-link {
+        font-size: .75rem;
+      }
+
+      .tab-btn {
+        padding: 8px 12px;
+        font-size: .8rem;
+      }
+
+      .collections-wrap {
+        padding: 10px 8px 50px;
+      }
+
+      .gallery {
+        column-gap: 6px;
+      }
+
+      .gallery-item {
+        margin-bottom: 6px;
+      }
+
+      .blogs-wrap {
+        padding: 55px 20px;
+      }
+
+      .blog-card {
+        padding: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  .site-footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid #DCE5D5;
+    background: #F7F6EC;
+  }
+  .site-footer p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #536C4C;
+  }
+  footer{text-align:center;padding:30px;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header class="corner-nav">
+    <nav class="nav-inner" aria-label="Little Corner navigation">
+      <a href="index.html#about" class="back-link">
+        ← Back to homepage
+      </a>
+
+      <div class="tab-buttons" role="group" aria-label="Page sections">
+        <button type="button"
+                class="tab-btn active"
+                data-tab="collections"
+                aria-pressed="true">
+          Collections
+        </button>
+
+        <button type="button"
+                class="tab-btn"
+                data-tab="blogs"
+                aria-pressed="false">
+          Blogs
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Collections -->
+  <main>
+    <section id="collections"
+             class="tab-panel active"
+             aria-label="Photo collections">
+
+      <div class="collections-wrap">
+        <div class="gallery" id="photo-gallery"
+             aria-label="My photo diary">
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Blogs -->
+    <section id="blogs"
+             class="tab-panel"
+             aria-label="My blog">
+
+      <div class="blogs-wrap">
+
+        <h1>Thoughts</h1>
+
+        <p class="blogs-description">
+          Reflections, stories, and everything in between.
+        </p>
+
+        <article class="blog-card blog-preview">
+
+          <img
+            class="blog-thumbnail"
+            src="blogs/innovation/img1.PNG"
+            alt="A memory from my Ford Museum visit"
+            loading="lazy"
+          >
+
+          <div class="blog-preview-content">
+            <span class="section-kicker">
+              FIELD NOTES 
+            </span>
+
+            <h2>INNOVATION...What about it?</h2>
+
+            <p>
+              Reflection on my July visit to the Ford Rouge
+              Factory and Henry Ford Museum, where I explored
+              how innovation connects people, business,
+              and the ever-changing world around us.
+            </p>
+
+            <a
+              href="blogs/innovation/innovation.html"
+              class="journal-link"
+            >
+              Read ↗
+            </a>
+          </div>
+
+        </article>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox"
+       id="lightbox"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Enlarged photograph"
+       aria-hidden="true">
+
+    <button class="lightbox-close"
+            type="button"
+            aria-label="Close photo">
+      ×
+    </button>
+
+    <img id="lightbox-image" alt="">
+  </div>
+
+  <script>
+    // ==========================================
+    // 1. TAB NAVIGATION
+    // ==========================================
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    function showTab(name) {
+      const selected = name === 'blogs'
+        ? 'blogs'
+        : 'collections';
+
+      tabs.forEach(button => {
+        const active = button.dataset.tab === selected;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+
+      panels.forEach(panel => {
+        panel.classList.toggle(
+          'active',
+          panel.id === selected
+        );
+      });
+
+      if (window.location.hash !== '#' + selected) {
+        history.replaceState(null, '', '#' + selected);
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    tabs.forEach(button => {
+      button.addEventListener('click', () => {
+        showTab(button.dataset.tab);
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      showTab(location.hash.slice(1));
+    });
+
+    showTab(location.hash.slice(1));
+
+
+    // ==========================================
+    // 2. PHOTO COLLECTION
+    // ==========================================
+
+    const gallery = document.getElementById('photo-gallery');
+
+    // Local testing photos.
+    // Replace these filenames with your own.
+    // These are used if photos.json is unavailable.
+
+    const localPhotos = [
+      'images/little-corner/collections/photo1.jpg',
+      'images/little-corner/collections/photo2.jpg',
+      'images/little-corner/collections/photo3.jpg',
+      'images/little-corner/collections/photo4.jpg',
+      'images/little-corner/collections/photo5.jpg',
+      'images/little-corner/collections/photo6.jpg'
+    ];
+
+    function renderGallery(photos) {
+      gallery.replaceChildren();
+
+      if (!photos.length) {
+        const empty = document.createElement('div');
+        empty.className = 'gallery-empty';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Memories are growing ♡';
+
+        const description = document.createElement('p');
+        description.textContent =
+          'Your photo diary is waiting for its first snapshots.';
+
+        empty.append(title, description);
+        gallery.appendChild(empty);
+        return;
+      }
+
+      photos.forEach((photo, index) => {
+        const button = document.createElement('button');
+        button.className = 'gallery-item';
+        button.type = 'button';
+        button.setAttribute(
+          'aria-label',
+          'Enlarge photograph ' + (index + 1)
+        );
+
+        const img = document.createElement('img');
+        img.src = photo;
+        img.alt = 'Memory ' + (index + 1);
+        img.loading = index < 4 ? 'eager' : 'lazy';
+
+        // Hide files that don't exist.
+        img.onerror = () => {
+          button.remove();
+
+          if (!gallery.querySelector('.gallery-item')) {
+            renderGallery([]);
+          }
+        };
+
+        button.appendChild(img);
+
+        button.addEventListener('click', () => {
+          openLightbox(photo, img.alt);
+        });
+
+        gallery.appendChild(button);
+      });
+    }
+
+    // Later, GitHub Actions can generate photos.json.
+    // For now, localPhotos acts as the fallback.
+
+    async function loadPhotos() {
+      try {
+        const response = await fetch('photos.json', {
+          cache: 'no-store'
+        });
+
+        if (!response.ok) {
+          throw new Error('Photo list not found');
+        }
+
+        const photos = await response.json();
+
+        if (!Array.isArray(photos)) {
+          throw new Error('Invalid photo list');
+        }
+
+        // Only allow image paths from our photo folder.
+        const validPhotos = photos.filter(path =>
+          typeof path === 'string' &&
+          /^images\/little-corner\/collections\/[\w./-]+\.(jpg|jpeg|png|webp|gif)$/i.test(path) &&
+          !path.includes('..')
+        );
+
+        renderGallery(validPhotos);
+      } catch (error) {
+        renderGallery(localPhotos);
+      }
+    }
+
+    loadPhotos();
+
+
+    // ==========================================
+    // 3. PHOTO LIGHTBOX
+    // ==========================================
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage =
+      document.getElementById('lightbox-image');
+    const closeButton =
+      document.querySelector('.lightbox-close');
+
+    let previousFocus = null;
+
+    function openLightbox(src, alt) {
+      previousFocus = document.activeElement;
+      lightboxImage.src = src;
+      lightboxImage.alt = alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.removeAttribute('src');
+      document.body.style.overflow = '';
+
+      if (previousFocus) {
+        previousFocus.focus();
+      }
+    }
+
+    closeButton.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (!lightbox.classList.contains('open')) return;
+
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        closeButton.focus();
+      }
+    });
+  </script>
+<footer class="site-footer">
+  <p>© 2026 Anna Do. All rights reserved.</p>
+</footer>
+</body>
+</html>

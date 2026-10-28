@@ -1,308 +1,115 @@
 <!DOCTYPE html>
+
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chegg Strategic Consulting Project - Anna Do</title>
-  <meta name="description" content="Hypothetical strategic consulting analysis for Chegg in response to generative AI disruption and declining subscription engagement. Project by Anna Do, Business Information Systems major at TCU." />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --pink-600: #db2777;
-      --ribbon: #ffe4f0;
-      --bg: #fff8fb;
-      --sub-bg: #fff2f6;
-    }
-
-    /* 🌸 Global */
-    body {
-      background: var(--bg);
-      color: #333;
-      font-family: "EB Garamond", serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0;
-      letter-spacing: 0.1px;
-    }
-    h1, h2, h3, p, ul, li, button, iframe {
-      font-family: "EB Garamond", serif !important;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-      color: var(--pink-600);
-      letter-spacing: 0.3px;
-      margin-top: 1.5em;
-    }
-    p, ul, li {
-      font-weight: 400;
-      font-size: 1.05rem;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-    ul li::marker {
-      color: var(--pink-600);
-    }
-
-    /* 🌷 Header */
-    .project-header {
-      background: #fff4f8;
-      text-align: center;
-      padding: 22px 20px;
-      border-bottom: 1px solid #f8dce8;
-      max-width: 780px;
-      margin: 40px auto 30px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
-    }
-    .project-header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px;
-    }
-    .project-header p {
-      font-size: 1rem;
-      color: #b05278;
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    /* subtle disclaimer under header */
-    .disclaimer {
-      font-size: 0.9rem;
-      color: #a15a7c;
-      font-style: italic;
-      margin-top: 8px;
-    }
-
-    /* 🌷 Content */
-    .project-content {
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-      line-height: 1.55;
-      font-size: 0.95rem;
-    }
-
-    /* 🎀 Main Ribbon Titles */
-    .project-content h2 {
-      position: relative;
-      display: inline-block;
-      background: var(--ribbon);
-      color: var(--pink-600);
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 6px 14px 6px 20px;
-      border-radius: 8px 20px 20px 8px;
-      margin: 24px 0 6px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
-    }
-    .project-content h2::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid var(--pink-600);
-    }
-
-    /* 🩰 Bullet spacing */
-    .project-content ul {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 22px;
-      line-height: 1.45;
-    }
-
-    .project-content li {
-      margin-bottom: 2px;
-    }
-
-    /* 🩰 Accordions */
-    .accordion-container {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .accordion-item {
-      margin-top: 14px;
-    }
-
-    .accordion-btn {
-      background: var(--sub-bg);
-      border: 1px solid #f2cce1;
-      color: #8f3a64;
-      cursor: pointer;
-      padding: 12px 18px;
-      width: 100%;
-      text-align: left;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    }
-    .accordion-btn::before {
-      content: "▼";
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 1rem;
-      color: #b25684;
-      opacity: 0.9;
-    }
-    .accordion-btn:hover {
-      background-color: #fff3f7;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(244, 114, 182, 0.18);
-    }
-    .accordion-btn.active {
-      background-color: #fce6ef;
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.4s ease;
-      opacity: 0;
-      background-color: #fff8fb;
-      border-left: 3px solid #ffe4f0;
-      border-radius: 0 0 12px 12px;
-      padding: 0 8px;
-      margin-top: 2px;
-    }
-    .accordion-content.open {
-      opacity: 1;
-      padding: 12px 8px;
-    }
-
-    iframe {
-      border: 1px solid #f5d0e0;
-      border-radius: 10px;
-      background: #fff;
-      width: 100%;
-      height: 580px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
-      animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 🩷 Back link */
-    .back-link {
-      display: inline-block;
-      margin-top: 24px;
-      font-style: italic;
-      text-decoration: underline;
-      color: var(--pink-600);
-      font-size: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid #f8dce8;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      color: #999;
-      background: #fff;
-    }
-    footer .sheep {
-      transition: transform 0.3s ease;
-    }
-    footer:hover .sheep {
-      transform: translateX(6px);
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chegg AI Disruption &amp; Growth Strategy | Anna Do</title>
+<meta content="Academic strategy consulting case study on Chegg, generative AI disruption, Blue Ocean Strategy and technology adoption." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=EB+Garamond:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="../styles.css" rel="stylesheet"/>
+<link href="../project.css" rel="stylesheet"/>
+<style>
+    :root { --cream:#F7F6EC; --forest:#536C4C; --dark:#3D493C; --muted:#738D63; --sage:#E4EBD9; }
+    body { background:var(--cream); color:var(--dark); }
+    .project-header h1 { font-family:'EB Garamond',Georgia,serif; }
+    .project-content { line-height:1.85; }
+    .project-intro { font-size:1.12rem; line-height:2; color:var(--forest); margin-bottom:32px; }
+    .marker-highlight { background:linear-gradient(178deg,transparent 5%,rgba(250,225,125,.12) 10%,rgba(250,225,125,.38) 25%,rgba(255,233,154,.48) 55%,rgba(250,225,125,.28) 85%,transparent 97%); -webkit-box-decoration-break:clone; box-decoration-break:clone; padding:3px 7px; border-radius:12px 7px 14px 9px; }
+    .project-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:28px 0 42px; }
+    .project-metric { background:var(--sage); border:1px solid #d7e2ce; border-radius:16px; padding:20px 16px; text-align:center; }
+    .project-metric strong { display:block; font-family:'EB Garamond',Georgia,serif; font-size:2.05rem; line-height:1.1; color:var(--forest); }
+    .project-metric span { display:block; font-size:.8rem; line-height:1.5; margin-top:9px; }
+    .project-metric small { display:block; font-size:.7rem; color:var(--muted); margin-top:7px; }
+    .insight-list { padding-left:22px; }
+    .insight-list li { margin-bottom:13px; }
+    .project-note { font-size:.87rem; color:var(--muted); }
+    .decision-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin:20px 0 28px; }
+    .decision-card { background:#fffdf6; border:1px solid #dce5d5; border-radius:16px; padding:22px; }
+    .decision-card h3 { margin:0 0 10px; color:var(--forest); font-family:'EB Garamond',Georgia,serif; font-size:1.55rem; }
+    .decision-card p { margin:0; }
+    .site-footer { text-align:center; padding:30px 20px; border-top:1px solid #DCE5D5; background:var(--cream); }
+    .site-footer p { margin:0; font-size:.85rem; color:var(--forest); }
+    @media(max-width:640px) { .project-metrics,.decision-grid { grid-template-columns:1fr; } .project-metric { padding:15px; } }
+  
+    .disclaimer { font-size:.85rem; color:var(--muted); max-width:800px; margin:12px auto 0; line-height:1.6; }
+    .project-metric strong { overflow-wrap:anywhere; }
+  
+/* Nike content components, styled to match the shared project template */
+.project-header .header-eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.project-header .header-summary{font-size:1rem;color:var(--forest);margin-top:8px}
+.project-header .header-tags{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}
+.project-header .header-tags span{font-size:.76rem;border:1px solid #c5d2bc;padding:4px 11px;border-radius:30px;color:var(--forest)}
+.project-disclosure{background:#fffdf8;border-left:3px solid #a9ba9b;border-radius:0 12px 12px 0;padding:17px 20px;margin:20px 0 36px;font-size:.88rem;line-height:1.8;color:var(--forest)}
+.project-disclosure p{margin:0;font-size:inherit}
+.project-content .section-kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700;margin:32px 0 0}
+.project-content .section-kicker+h2{margin-top:7px}
+.project-content .project-intro{font-size:1.12rem;line-height:2;color:var(--forest);margin-bottom:30px}
+.project-content .marker-highlight{background:linear-gradient(178deg,transparent 5%,rgba(250,225,125,.12) 10%,rgba(250,225,125,.38) 25%,rgba(255,233,154,.48) 55%,rgba(250,225,125,.28) 85%,transparent 97%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:3px 7px;border-radius:12px 7px 14px 9px}
+.project-content .project-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:25px 0 40px}
+.project-content .project-metric{background:var(--sage);border:1px solid #d7e2ce;border-radius:16px;padding:20px 16px;text-align:center}
+.project-content .project-metric strong{display:block;font-family:'EB Garamond',Georgia,serif;font-size:2.05rem;line-height:1.1;color:var(--forest)}
+.project-content .project-metric span{display:block;font-size:.8rem;line-height:1.5;margin-top:9px}
+.project-content .decision-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0 28px}
+.project-content .decision-card{background:#fffdf6;border:1px solid #dce5d5;border-radius:16px;padding:22px}
+.project-content .decision-card h3{margin:7px 0 10px;color:var(--forest);font-size:1.55rem}
+.project-content .decision-card p{margin:0 0 12px}
+.project-content .decision-card .card-eyebrow{font-size:.72rem;letter-spacing:.13em;color:#8ba27d}
+.project-content .decision-card .card-outcome{border-top:1px solid #dce5d5;padding-top:12px;margin-top:16px;color:var(--forest);font-size:.86rem}
+.project-content .role-panel,.project-content .forecast-panel{background:var(--sage);border-radius:16px;padding:24px;margin:22px 0}
+.project-content .role-panel h3,.project-content .forecast-panel h3{margin-top:0}
+.project-content .role-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.project-content .roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:22px 0}
+.project-content .roadmap-item{background:#fffdf6;border-top:4px solid #9caf90;border-radius:0 0 12px 12px;padding:14px 11px}
+.project-content .roadmap-item strong{display:block;color:var(--forest);font-size:1.25rem}
+.project-content .roadmap-item p{font-size:.8rem;margin:6px 0}
+.project-content .forecast-bars{display:grid;gap:14px;margin:20px 0}
+.project-content .forecast-row{display:grid;grid-template-columns:105px 1fr 78px;align-items:center;gap:12px;font-size:.82rem}
+.project-content .forecast-track{height:14px;background:#d5dfce;border-radius:30px;overflow:hidden}
+.project-content .forecast-fill{height:100%;background:#738d63;border-radius:30px}
+.project-content .project-note{font-size:.85rem;color:var(--muted)}
+.project-content .doclink{display:inline-block;margin:5px 0 12px;font-size:.86rem}
+@media(max-width:640px){.project-content .project-metrics,.project-content .decision-grid,.project-content .role-layout{grid-template-columns:1fr}.project-content .roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}.project-content .forecast-row{grid-template-columns:90px 1fr 68px;gap:7px;font-size:.72rem}}
+</style>
 </head>
-
-<body>
-  <header class="project-header">
-    <h1>Chegg Consulting Project</h1>
-    <p>Consulting · Blue Ocean Strategy · Strategy Canvas · Innovation Adoption Curve</p>
-    <p class="disclaimer">
-      This consulting project is a hypothetical academic exercise and is not affiliated with, sponsored by, or endorsed by Chegg, Inc.
-    </p>
-  </header>
-
-  <main class="project-content">
-    <h2>Project Overview</h2>
-    <p>
-      This project involved developing a hypothetical strategic consulting analysis for Chegg in response to growing disruption from generative AI tools and declining subscription engagement. 
-      I served as a <strong><em>Strategic Consultant</em></strong>, with primary responsibility of applying <strong><em>Blue Ocean Strategy</em></strong> to evaluate Chegg’s competitive positioning
-      and identify opportunities for differentiation beyond direct AI competition.
-    </p>
-
-    <p>
-      In addition, I reviewed and integrated insights from the <strong><em>Innovation Adoption Curve</em></strong> to assess Chegg’s AI initiatives, 
-      including CheggMate, and to understand adoption challenges among different user segments. 
-      The project focused on reframing Chegg’s value proposition around trust, academic integrity, and human-supported learning rather than competing solely on speed or automation.
-    </p>
-
-    <h2>Tools & Skills</h2>
-    <ul>
-      <li>Strategic analysis using Blue Ocean Strategy and the Four Actions Framework.</li>
-      <li>Competitive positioning through Strategy Canvas development.</li>
-      <li>Technology adoption analysis using the Innovation Adoption Curve.</li>
-      <li>Market and competitor evaluation in response to AI disruption.</li>
-    </ul>
-
-    <h2>Project Documents</h2>
-    <div class="accordion-container">
-      <div class="accordion-item">
-        <button class="accordion-btn">Chegg Consulting Executive Presentation</button>
-        <div class="accordion-content">
-          <iframe src="chegg-project.pdf"></iframe>
-        </div>
-      </div>
-
-    <h2>Reflection</h2>
-    <p>
-     This project strengthened my ability to think like a strategy consultant. 
-     Applying Blue Ocean Strategy pushed me to move beyond competitive benchmarking and instead consider how Chegg could 
-     redefine its value proposition in a crowded and rapidly changing market.
-    </p>
-
-    <p>
-      Reviewing the Innovation Adoption Curve also highlighted the importance of timing, trust, and user readiness when introducing AI-driven products in education. 
-      Overall, the project reinforced how strategic frameworks can be used together to evaluate disruption, guide differentiation, 
-      and support more thoughtful long-term decision making in technology-driven industries.
-    </p>
-
-    <div style="text-align: center">
-      <a href="../index.html#academic-projects" class="back-link">← Back to Portfolio</a>
-    </div>
-  </main>
-
-  <footer>
-    <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const accordions = document.querySelectorAll(".accordion-btn");
-    accordions.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          content.classList.remove("open");
-        } else {
-          document.querySelectorAll(".accordion-content").forEach((c) => {
-            c.style.maxHeight = null;
-            c.classList.remove("open");
-            c.previousElementSibling.classList.remove("active");
-          });
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("open");
-        }
-      });
-    });
-  </script>
-</body>
+<body><header class="project-header"><p class="header-eyebrow">Strategy &amp; innovation · Academic consulting case study · 2025</p><h1>Beyond the Answer: Rethinking Chegg’s Future<span style="color:#8a9f80">.</span></h1><p class="header-summary">A hypothetical growth strategy exploring how Chegg could differentiate through trusted, ethical, human-supported learning in an AI-driven education market.</p><div class="header-tags"><span>Blue Ocean Strategy</span><span>Innovation adoption</span><span>Strategy Canvas</span><span>EdTech</span><span>AI disruption</span></div></header><main class="project-content">
+<aside class="project-disclosure"><p class="disclaimer"><strong>Academic project disclosure:</strong> This is an independent classroom consulting exercise presented in April 2025. It was not commissioned by, affiliated with, sponsored by, or endorsed by Chegg, Inc. The proposed strategy, comparisons, and adoption assessments reflect our team's academic analysis, not implemented Chegg initiatives.</p></aside>
+<p class="section-kicker">01 / The challenge</p><h2>When answers become free, what makes learning valuable?</h2>
+<p class="project-intro"><span class="marker-highlight">As generative AI tools made instant answers widely accessible, our team explored how Chegg could move beyond traditional homework assistance and create a more differentiated learning experience built on trust, mentorship, and academic growth.</span></p>
+<p>Our three-person consulting team examined Chegg's competitive pressure, subscription challenges, pricing, brand perception, and the adoption barriers facing its AI offering, CheggMate. The goal was to identify strategic opportunities rather than claim that our proposals had been adopted.</p>
+<div class="project-metrics"><div class="project-metric"><strong>23%</strong><span>Subscription revenue decline cited in our 2025 presentation</span></div><div class="project-metric"><strong>2</strong><span>Strategic frameworks applied</span></div><div class="project-metric"><strong>4</strong><span>Blue Ocean actions evaluated</span></div></div>
+<p class="section-kicker">02 / Strategic diagnosis</p><h2>Understanding the pressure on Chegg</h2>
+<div class="decision-grid">
+<article class="decision-card"><span class="card-eyebrow">CHALLENGE 01</span><h3>Free AI alternatives</h3><p>General-purpose AI tools offered fast responses at little or no cost, putting pressure on a paid homework-answer model.</p><p class="card-outcome"><strong>Strategic question:</strong> What value can Chegg offer beyond answer speed?</p></article>
+<article class="decision-card"><span class="card-eyebrow">CHALLENGE 02</span><h3>Subscription pressure</h3><p>Our presentation cited a 23% year-over-year decline in subscription revenue, highlighting pressure on Chegg's existing model.</p><p class="card-outcome"><strong>Strategic question:</strong> How could Chegg rebuild willingness to pay?</p></article>
+<article class="decision-card"><span class="card-eyebrow">CHALLENGE 03</span><h3>Trust &amp; academic integrity</h3><p>Students and educators face uncertainty around the reliability and appropriate use of AI-assisted academic work.</p><p class="card-outcome"><strong>Strategic question:</strong> Can learning support become a source of differentiation?</p></article>
+<article class="decision-card"><span class="card-eyebrow">CHALLENGE 04</span><h3>Unclear AI value</h3><p>Our team considered whether CheggMate's positioning, perceived benefits, and pricing could limit mainstream adoption.</p><p class="card-outcome"><strong>Strategic question:</strong> How can Chegg make its value proposition easier to understand?</p></article>
+</div>
+<p class="section-kicker">03 / The strategy</p><h2>From a red ocean to a blue ocean</h2>
+<p>Using <strong>Blue Ocean Strategy</strong>, we contrasted competing for faster, cheaper answers with creating a more distinctive experience around meaningful learning, personalization, and mentorship.</p>
+<div class="decision-grid"><article class="decision-card"><span class="card-eyebrow">RED OCEAN · CURRENT COMPETITION</span><h3>Competing on answers</h3><p>Emphasis on quick homework solutions, price, and content volume in a crowded market with free alternatives.</p><p class="card-outcome"><strong>Risk:</strong> limited differentiation as automated answers become commonplace.</p></article>
+<article class="decision-card"><span class="card-eyebrow">BLUE OCEAN · PROPOSED OPPORTUNITY</span><h3>Competing on learning outcomes</h3><p>Emphasis on verified guidance, personalized study support, human mentorship, and responsible AI assistance.</p><p class="card-outcome"><strong>Opportunity:</strong> create reasons to choose Chegg beyond speed alone.</p></article></div>
+<p class="section-kicker">04 / Four actions framework</p><h2>Redesigning the value proposition</h2>
+<div class="decision-grid">
+<article class="decision-card"><span class="card-eyebrow">ACTION 01</span><h3>Eliminate</h3><p>Reduce reliance on undifferentiated, traditional answer-only experiences that free AI can easily replicate.</p><p class="card-outcome"><strong>Intended shift:</strong> from passive answer delivery to active academic engagement.</p></article>
+<article class="decision-card"><span class="card-eyebrow">ACTION 02</span><h3>Reduce</h3><p>Address confusing pricing and unnecessary friction that can discourage students from choosing a paid service.</p><p class="card-outcome"><strong>Intended shift:</strong> simpler, more transparent value.</p></article>
+<article class="decision-card"><span class="card-eyebrow">ACTION 03</span><h3>Raise</h3><p>Prioritize academic integrity, trust, and meaningful learning rather than optimizing solely for instant solutions.</p><p class="card-outcome"><strong>Intended shift:</strong> more credible, education-centered support.</p></article>
+<article class="decision-card"><span class="card-eyebrow">ACTION 04</span><h3>Create</h3><p>Explore a hybrid AI-and-human study coach combining personalized guidance with tutor support.</p><p class="card-outcome"><strong>Intended shift:</strong> mentorship and learning experiences that stand apart.</p></article></div>
+<p class="section-kicker">05 / Technology adoption</p><h2>Crossing the gap to mainstream learners</h2>
+<p>Our team also used the <strong>Innovation Adoption Curve</strong> to examine CheggMate. In our presentation, we placed it in an early-adopter phase and discussed the challenge of moving toward the early majority. This was a qualitative interpretation, not a measured adoption statistic.</p>
+<div class="role-layout"><div><p>We identified several possible barriers: limited trust in AI-generated answers, an unclear distinction from free alternatives, pricing concerns, and existing brand perceptions.</p><p>The lesson was that technological capability alone does not guarantee adoption. Users also need a clear reason to trust, understand, and repeatedly use the product.</p></div><aside class="role-panel"><h3>Adoption barriers explored</h3><ul><li><strong>Trust:</strong> confidence in AI-supported learning</li><li><strong>Clarity:</strong> what CheggMate offers differently</li><li><strong>Value:</strong> justification for a paid subscription</li><li><strong>Perception:</strong> alignment with academic integrity</li></ul></aside></div>
+<p class="section-kicker">06 / My contribution</p><h2>Where I focused my work</h2>
+<p>I served as the team's <strong>Strategic Consultant</strong>, focusing on the Blue Ocean Strategy analysis and how Chegg might reposition itself beyond direct competition with free AI answer tools.</p>
+<div class="role-layout"><div><p>I applied the red-ocean versus blue-ocean comparison and the <strong>Eliminate–Reduce–Raise–Create</strong> framework to translate competitive challenges into possible strategic actions.</p><p>Our team also brought the innovation adoption perspective into the overall recommendations, connecting the strategy to student trust and readiness.</p></div><aside class="role-panel"><h3>My strategy focus</h3><ul><li>Competitive positioning and differentiation</li><li>Blue Ocean Strategy and four actions framework</li><li>Student value proposition and ethical learning</li><li>Recommendations grounded in the team's strategic analysis</li></ul></aside></div>
+<p class="section-kicker">07 / Recommendations</p><h2>From strategic idea to practical validation</h2>
+<div class="decision-grid"><article class="decision-card"><span class="card-eyebrow">NEXT STEP 01</span><h3>Research student needs</h3><p>Survey students about trust, mentorship, academic integrity, and willingness to pay.</p></article><article class="decision-card"><span class="card-eyebrow">NEXT STEP 02</span><h3>Pilot hybrid support</h3><p>Test small-scale AI-and-human tutoring concepts before considering wider rollout.</p></article><article class="decision-card"><span class="card-eyebrow">NEXT STEP 03</span><h3>Test brand positioning</h3><p>Use interviews and focus groups to understand how learners perceive Chegg relative to AI alternatives.</p></article><article class="decision-card"><span class="card-eyebrow">NEXT STEP 04</span><h3>Evaluate risks</h3><p>Explore legacy-user retention, AI trust, educator concerns, and feasibility before committing to a major shift.</p></article></div>
+<p class="project-note">These were proposed next steps in our academic presentation, not completed pilots or verified business outcomes.</p>
+<p class="section-kicker">08 / Original work</p><h2>Explore the full project</h2><p>Our 19-slide presentation includes the industry diagnosis, Innovation Adoption Curve, Blue Ocean comparison, Strategy Canvas, four actions framework, and risk mitigation recommendations.</p>
+<div class="accordion-container"><div class="accordion-item"><button class="accordion-btn" type="button">Chegg Strategic Consulting Presentation · 19 slides</button><div class="accordion-content"><a class="doclink" href="chegg-project.pdf" rel="noopener" target="_blank">Open presentation in a new tab ↗</a><iframe loading="lazy" src="chegg-project.pdf" title="Chegg strategic consulting executive presentation"></iframe></div></div></div>
+<p class="section-kicker">09 / Reflection</p><h2>What this project taught me</h2><p>This project challenged me to look beyond a company's immediate competitive threats and ask whether it could redefine the value customers receive. Applying Blue Ocean Strategy made me think about creating meaningful differentiation instead of simply trying to outperform free AI tools on speed.</p><p>Studying technology adoption also reminded me that even promising innovations need user trust, a clear value proposition, and thoughtful timing. Combining the frameworks helped me connect strategic ambition with realistic adoption barriers and risks.</p><p>My biggest takeaway was that <strong>lasting innovation is not just about introducing new technology — it is about creating value that people genuinely understand and trust.</strong></p>
+<div style="text-align:center"><a class="back-link" href="../index.html#projects">← Back to Portfolio</a></div></main><footer class="site-footer"><p>© 2026 Anna Do. All rights reserved.</p></footer><script src="../project.js"></script></body>
 </html>

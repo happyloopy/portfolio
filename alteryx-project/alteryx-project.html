@@ -3,340 +3,186 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business Intelligence & Analytics Project - Anna Do</title>
-  <meta name="description" content="Business Intelligence project analyzing the Global Superstore dataset using Alteryx and Tableau. By Anna Do, Business Information Systems major at TCU." />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
-
+  <title>Global Retail & Profitability Analytics | Anna Do</title>
+  <meta name="description" content="Analyzing 50,000+ multinational retail transactions with Alteryx and Tableau to examine customer segments, loyalty, cross-sell opportunities, and returns." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../project.css">
   <style>
-    :root {
-      --pink-600: #db2777;
-      --ribbon: #ffe4f0;
-      --bg: #fff8fb;
-      --sub-bg: #fff2f6;
-    }
+    /* Scoped additions; existing project.css remains responsible for the page theme. */
+    .project-content .project-lede { font-size: 1.15rem; color: #536C4C; line-height: 1.7; }
+    .project-content .metric-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin: 24px 0 34px; }
+    .project-content .metric { padding: 18px; border: 1px solid #DCE5D5; border-radius: 16px; background: #F0F4E9; }
+    .project-content .metric strong { display: block; font-family: 'EB Garamond',Georgia,serif; font-size: 1.85rem; line-height: 1.1; color: #3D493C; }
+    .project-content .metric span { display: block; margin-top: 8px; font-size: .88rem; color: #536C4C; }
+    .project-content .analysis-card { padding: 20px 22px; margin: 16px 0; border: 1px solid #DCE5D5; border-radius: 16px; background: #FFFEFA; }
+    .project-content .analysis-card h3 { margin: 0 0 10px; font-size: 1.45rem; color: #536C4C; }
+    .project-content .analysis-card p:last-child { margin-bottom: 0; }
+    .project-content .mini-label { color: #738D63; font-family: 'DM Sans',sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+    .project-content .note { border-left: 3px solid #9EB493; background: #F0F4E9; border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 20px 0; }
+    .project-content .steps { padding-left: 24px; }
+    .project-content .steps li { margin-bottom: 10px; }
+    .project-content .analysis-card ul { padding-left: 22px; }
+    .project-header h1 { text-wrap: balance; }
+    @media (max-width:600px) { .project-content .metric-grid { grid-template-columns: 1fr; } .project-content .analysis-card { padding: 16px; } }
+    .marker-highlight {
+      background:
+        linear-gradient(
+          178deg,
+          transparent 5%,
+          rgba(250, 225, 125, 0.12) 10%,
+          rgba(250, 225, 125, 0.38) 25%,
+          rgba(255, 233, 154, 0.48) 55%,
+          rgba(250, 225, 125, 0.28) 85%,
+          transparent 97%
+        );
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
 
-    /* 🌸 Global */
-    body {
-      background: var(--bg);
-      color: #333;
-      font-family: "EB Garamond", serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0;
-      letter-spacing: 0.1px;
+      padding: 3px 7px;
+      border-radius: 12px 7px 14px 9px;
     }
-    h1, h2, h3, p, ul, li, button, iframe {
-      font-family: "EB Garamond", serif !important;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-      color: var(--pink-600);
-      letter-spacing: 0.3px;
-      margin-top: 1.5em;
-    }
-    p, ul, li {
-      font-weight: 400;
-      font-size: 1.05rem;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-    ul li::marker {
-      color: var(--pink-600);
-    }
-
-    /* 🌷 Header */
-    .project-header {
-      background: #fff4f8;
+    .site-footer {
       text-align: center;
-      padding: 22px 20px;
-      border-bottom: 1px solid #f8dce8;
-      max-width: 780px;
-      margin: 40px auto 30px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
+      padding: 30px 20px;
+      border-top: 1px solid #DCE5D5;
+      background: #F7F6EC;
     }
-    .project-header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px;
-    }
-    .project-header p {
-      font-size: 1rem;
-      color: #b05278;
+    .site-footer p {
       margin: 0;
-      line-height: 1.3;
+      font-size: 0.85rem;
+      color: #536C4C;
     }
-
-    /* 🌷 Content */
-    .project-content {
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-      line-height: 1.55;
-      font-size: 0.95rem;
-    }
-
-    /* 🎀 Main Ribbon Titles */
-    .project-content h2 {
-      position: relative;
-      display: inline-block;
-      background: var(--ribbon);
-      color: var(--pink-600);
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 6px 14px 6px 20px;
-      border-radius: 8px 20px 20px 8px;
-      margin: 24px 0 6px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
-    }
-    .project-content h2::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid var(--pink-600);
-    }
-
-        /* 🩰 Match BI Project bullet spacing */
-    .project-content ul {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 22px; /* same indent as BI project */
-      line-height: 1.45; /* tighter list spacing */
-    }
-
-    .project-content li {
-      margin-bottom: 2px; /* minimal space between items */
-    }
-
-    /* 🩰 Subsection Accordions */
-    .accordion-container {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .accordion-item {
-      margin-top: 14px;
-    }
-
-    .accordion-btn {
-      background: var(--sub-bg);
-      border: 1px solid #f2cce1;
-      color: #8f3a64; /* 🌸 softer mauve-rose text */
-      cursor: pointer;
-      padding: 12px 18px;
-      width: 100%;
-      text-align: left;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    }
-    .accordion-btn::before {
-      content: "▼";
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 1rem;
-      color: #b25684; /* softer pink arrow */
-      opacity: 0.9;
-    }
-    .accordion-btn:hover {
-      background-color: #fff3f7;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(244, 114, 182, 0.18);
-    }
-    .accordion-btn.active {
-      background-color: #fce6ef;
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.4s ease;
-      opacity: 0;
-      background-color: #fff8fb;
-      border-left: 3px solid #ffe4f0;
-      border-radius: 0 0 12px 12px;
-      padding: 0 8px;
-      margin-top: 2px;
-    }
-    .accordion-content.open {
-      opacity: 1;
-      padding: 12px 8px;
-    }
-
-    iframe {
-      border: 1px solid #f5d0e0;
-      border-radius: 10px;
-      background: #fff;
-      width: 100%;
-      height: 580px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
-      animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 🩷 Back link */
-    .back-link {
-      display: inline-block;
-      margin-top: 24px;
-      font-style: italic;
-      text-decoration: underline;
-      color: var(--pink-600);
-      font-size: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid #f8dce8;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      color: #999;
-      background: #fff;
-    }
-    footer .sheep {
-      transition: transform 0.3s ease;
-    }
-    footer:hover .sheep {
-      transform: translateX(6px);
-    }
+    footer{text-align:center;padding:30px;color:var(--muted)}
   </style>
 </head>
-
 <body>
   <header class="project-header">
-    <h1>Business Intelligence & Analytics Project</h1>
-    <p>Business Intelligence · Alteryx · Tableau · Customer Analytics</p>
+    <h1>Global Retail & Profitability Analytics</h1>
+    <p>Alteryx · Tableau · Customer Segmentation · Retail Profitability</p>
   </header>
 
   <main class="project-content">
-    <h2>Project Overview</h2>
-    <p>
-      This Business Intelligence project analyzed the Global Superstore dataset to uncover profitability drivers, customer behavior, and operational inefficiencies across regions and product categories. 
-      Using <strong><em>Alteryx</em></strong> for data preparation & analytical workflows and <strong><em>Tableau</em></strong> for visualization, our team translated transactional data into actionable business recommendations.
+    <h2>01 · Project Overview</h2>
+     <p class="project-lede">
+      <span class="marker-highlight">
+      How can a multinational retailer improve sales performance by understanding its customers, developing more relevant product offers, and addressing costly returns?
+      </span>
     </p>
+    <p>Using the Global Superstore dataset, our team explored business performance across markets. My individual contribution focused on four connected questions: who the retailer serves, where repeat purchasing is strongest, which product categories offer potential cross-selling opportunities, and how returns relate to profitability. I used <strong>Alteryx</strong> to prepare and transform transactional data and <strong>Tableau</strong> to visualize patterns and communicate recommendations.</p>
 
-    <p>
-      My individual contributions focused on customer segmentation, customer loyalty by region, cross-sell potential, and return behavior analysis. 
-      I designed and executed multiple Alteryx workflows to clean, aggregate, and engineer metrics, then built Tableau visualizations 
-      to communicate patterns related to retention, revenue opportunities, and margin impact.
-    </p>
+    <div class="metric-grid" aria-label="Project at a glance">
+      <div class="metric"><strong>50,000+</strong><span>Multinational retail transactions analyzed</span></div>
+      <div class="metric"><strong>4</strong><span>Analytical workstreams in my contribution</span></div>
+      <div class="metric"><strong>2</strong><span>Primary tools: Alteryx and Tableau</span></div>
+    </div>
 
-    <h2>Tools & Skills</h2>
+    <h2>02 · Business Challenge</h2>
+    <p>Increasing sales is not only about acquiring more customers. Retailers also need to understand the mix of customers generating revenue, whether customers return to purchase again, how products could be marketed together, and whether returns undermine margins. These questions require combining transaction-level records with customer, product, regional, and return information.</p>
+    <p><strong>My guiding business question:</strong> How can customer and transaction analytics inform targeted retention efforts, potential cross-selling strategies, and return-reduction priorities?</p>
+
+    <h2>03 · Dataset &amp; Analytical Assumptions</h2>
+    <p>The analysis used a Global Superstore retail dataset containing more than 50,000 multinational transactions. The primary analytical source was the <strong>Orders</strong> tab, with the <strong>Returns</strong> tab used to identify returned orders. Relevant dimensions included customer, region, product category and subcategory, order identifiers, sales, and profit.</p>
+    <p>Before interpreting results, I worked from the assumption that the source data was sufficiently <strong>clean, complete, and accurate</strong> for exploratory analysis. In practice, those assumptions should be tested by checking identifier consistency, missing values, duplicate records, and whether Orders and Returns can be joined reliably.</p>
+    <div class="note"><strong>Interpretation limits:</strong> Repeat purchasing is a transaction-based proxy for loyalty, not a direct measure of customer satisfaction. Cross-sell candidates require order-level co-purchase validation before being described as frequently bought together. Return and profit comparisons show associations, not necessarily the causal effect of a return.</div>
+
+    <h2>04 · My Role &amp; Analytical Approach</h2>
+    <p>I was responsible for four analyses within the broader team project. My workflow followed a consistent process:</p>
+    <ol class="steps">
+      <li><strong>Frame the problem:</strong> Define business questions tied to improving retail sales performance.</li>
+      <li><strong>Review the data:</strong> Inspect available tables, relevant fields, relationships, and assumptions about data quality.</li>
+      <li><strong>Transform in Alteryx:</strong> Select fields, summarize records, create classifications, join datasets, and export analysis-ready outputs.</li>
+      <li><strong>Visualize in Tableau:</strong> Select charts suited to each question, including treemaps, bar charts, a cross-sell heatmap, and stacked bars.</li>
+      <li><strong>Interpret and recommend:</strong> Translate observed patterns into testable customer, product, and returns strategies, noting limitations and follow-up analysis.</li>
+    </ol>
+
+    <h2>05 · Analysis &amp; Findings</h2>
+    <section class="analysis-card">
+      <span class="mini-label">01 · Customer mix</span>
+      <h3>Customer Segmentation</h3>
+      <p><strong>Business question:</strong> Which customer segments contribute most to sales and profit?</p>
+      <p><strong>Approach:</strong> Compared the Consumer, Corporate, and Home Office segments using sales and profitability measures. In Tableau, I used a treemap to communicate each segment's relative contribution.</p>
+      <p><strong>Finding:</strong> Consumer was the largest segment, contributing approximately <strong>51.4% of sales</strong> in the presentation, while Corporate and Home Office contributed approximately 30.3% and 18.3%. This suggests Consumer is an important audience for growth initiatives, but segment size alone does not establish which customers have the highest lifetime value.</p>
+      <p><strong>Recommendation:</strong> Prioritize Consumer-focused campaigns while comparing profit margins and repeat purchasing before reallocating marketing investment.</p>
+    </section>
+
+    <section class="analysis-card">
+      <span class="mini-label">02 · Customer retention</span>
+      <h3>One-Time vs. Repeat Customers by Region</h3>
+      <p><strong>Business question:</strong> Where does the retailer have a stronger base of returning customers, and where might retention initiatives matter most?</p>
+      <p><strong>Alteryx workflow:</strong> Import Orders → select customer and regional fields → summarize order counts per customer and region → create a <code>Buyer_Type</code> classification (one-time or repeat) → summarize customer counts by region and buyer type → export for Tableau.</p>
+      <p><strong>Visualization:</strong> A regional stacked bar chart comparing the share of one-time and repeat buyers.</p>
+      <p><strong>Finding:</strong> The team presentation reported that one-time buyers represented roughly <strong>70–90%</strong> of customers in many regions. Western Europe showed a comparatively stronger repeat-customer base, at approximately <strong>56% repeat buyers</strong>, while Central Asia and Eastern Africa showed especially high one-time-buyer shares.</p>
+      <p><strong>Recommendation:</strong> Investigate whether differences in acquisition channels, product mix, delivery experience, or customer cohorts explain regional variation before testing region-specific retention campaigns.</p>
+    </section>
+
+    <section class="analysis-card">
+      <span class="mini-label">03 · Product opportunities</span>
+      <h3>Cross-Selling Potential Across Product Subcategories</h3>
+      <p><strong>Business question:</strong> Which subcategory combinations could be candidates for product bundles or related-product promotions?</p>
+      <p><strong>Alteryx workflow:</strong> Import Orders → select relevant product and sales fields → summarize sales by subcategory → self-join the summarized data → filter mirrored or duplicate pairs → calculate a combined pair-sales measure → summarize and export the resulting candidate pairs.</p>
+      <p><strong>Visualization:</strong> A Tableau heatmap comparing potential subcategory pairings.</p>
+      <p><strong>Recommendation:</strong> Use the heatmap as an initial way to prioritize possible bundles and in-cart recommendations, then validate candidate combinations using actual <strong>shared Order IDs</strong> before claiming that customers frequently purchase those products together.</p>
+      <div class="note"><strong>Methodological note:</strong> The documented self-join combines subcategory sales totals; it is not, on its own, an order-level market-basket analysis. A stronger next iteration would self-join order lines on Order ID and calculate pair frequency, support, and lift.</div>
+    </section>
+
+    <section class="analysis-card">
+      <span class="mini-label">04 · Profit protection</span>
+      <h3>Returns &amp; Profitability Analysis</h3>
+      <p><strong>Business question:</strong> Which product categories and subcategories warrant attention because of return patterns and weaker profitability?</p>
+      <p><strong>Alteryx workflow:</strong> Import Orders and Returns → join on <code>Order ID</code> → create a returned/not-returned flag → combine returned and non-returned records → summarize profitability by category → calculate return-rate measures for Tableau.</p>
+      <p><strong>Visualizations:</strong> A stacked bar chart comparing profitability across Furniture, Office Supplies, and Technology, alongside a bar chart of return rates by subcategory.</p>
+      <p><strong>Findings:</strong> The presentation reported lower average profit for returned transactions in <strong>Technology and Furniture</strong>. It also highlighted <strong>Labels (5.16%)</strong> and <strong>Tables (4.55%)</strong> among the highest subcategory return rates. Office Supplies showed a small positive difference in the comparison, which should not be interpreted as proof that returns improve profitability.</p>
+      <p><strong>Recommendation:</strong> Review high-return products and investigate potential drivers such as product expectations, quality, shipping damage, or fulfillment accuracy. Prioritize changes based on both return rate and financial exposure.</p>
+    </section>
+
+    <h2>06 · Business Recommendations</h2>
     <ul>
-    <li>Data preparation, filtering, joins, and aggregation using Alteryx workflows.</li>
-    <li>Metric creation including profit margin, return rate, buyer type (one-time vs repeat), and sales contribution.</li>
-    <li>Interactive data visualization and dashboard development using Tableau.</li>
-    <li>Translating analytical results into clear, business-focused insights.</li>
+      <li><strong>Customer strategy:</strong> Use segment contribution and regional repeat-purchase patterns to guide targeted retention experiments.</li>
+      <li><strong>Cross-selling:</strong> Validate high-potential subcategory combinations at the order level, then pilot bundles or recommendation placements.</li>
+      <li><strong>Returns:</strong> Investigate high-return subcategories and focus interventions where return volume and profit exposure are both meaningful.</li>
+      <li><strong>Measurement:</strong> Track repeat-purchase rate, campaign conversion, average order value, return rate, and contribution margin to evaluate whether proposed actions improve performance.</li>
     </ul>
 
-    <h2>My Contributions</h2>
+    <h2>07 · Limitations &amp; Next Steps</h2>
+    <p>This was an exploratory business intelligence project rather than a live operational deployment. The analysis identifies patterns and possible actions, but it does not demonstrate that the recommendations increased sales or reduced returns.</p>
+    <ul>
+      <li><strong>Validate data quality:</strong> Reconcile order counts and return joins, inspect missing fields, and confirm denominator definitions.</li>
+      <li><strong>Improve loyalty measurement:</strong> Add customer tenure, cohort analysis, and repeat-purchase timing.</li>
+      <li><strong>Strengthen cross-sell analysis:</strong> Identify products appearing in the same orders and assess association-rule metrics such as support, confidence, and lift.</li>
+      <li><strong>Measure return economics:</strong> Include refunds, restocking, shipping, and product costs where available.</li>
+      <li><strong>Test recommendations:</strong> Run small-scale campaigns or operational pilots and compare results against a baseline.</li>
+    </ul>
 
-    <p><strong>Customer Segmentation (Tableau)</strong></p>
-    <p>
-      I analyzed customer segments using sales and profit metrics to understand how different customer groups contributed to overall performance. 
-      Tableau dashboards highlighted which segments generated the most revenue and profit, helping identify priority customer groups.
-    </p>
-
-    <p><strong>Customer Loyalty by Region (Alteryx & Tableau)</strong></p>
-    <p>
-      Using Alteryx, I classified customers as one-time or repeat buyers based on order history and summarized loyalty rates by region. 
-      Tableau visualizations showed that most regions were dominated by one-time buyers, while a few regions demonstrated stronger repeat behavior - 
-      revealing opportunities for region-specific retention strategies.
-    </p>
-
-    <p><strong>Cross-Sell Potential (Alteryx & Tableau)</strong></p>
-    <p>
-      I built Alteryx workflows to identify frequently co-purchased product sub-categories and aggregated combined sales values. 
-      These results were visualized in Tableau to highlight strong product pairings that could support bundling or recommendation strategies.
-    </p>
-
-    <p><strong>Return Insights (Alteryx & Tableau)</strong></p>
-    <p>
-      I joined orders and returns data to calculate return rates and analyze their effect on profitability. 
-      Tableau dashboards revealed that returns had a disproportionate impact on profit in certain categories, pointing to areas where reducing returns could directly improve margins.
-    </p>
-
-    <h2>Project Documents</h2>
+    <h2>08 · Project Documents</h2>
     <div class="accordion-container">
       <div class="accordion-item">
-        <button class="accordion-btn">Executive Presentation</button>
+        <button class="accordion-btn" type="button">Executive Presentation</button>
         <div class="accordion-content">
-          <iframe src="alteryx-project.pdf"></iframe>
+          <p>The full team presentation includes additional analyses outside my individual contribution, such as discounting, shipping, and country-level comparisons.</p>
+          <iframe src="alteryx-project.pdf" title="Global Superstore team presentation" loading="lazy"></iframe>
         </div>
       </div>
-
-    <div class="accordion-item">
-      <button class="accordion-btn">My Analysis Files & Workflows</button>
-      <div class="accordion-content">
-        <p>
-          This folder contains my individual work from the project, including Alteryx workflows,
-          Excel output files generated from Alteryx, and datasets used to build Tableau dashboards.
-          These files document my end-to-end analysis process, from data preparation to
-          visualization-ready outputs.
-        </p>
-
-        <p>
-          <a href="https://drive.google.com/drive/folders/1HIntXNSbkloPbUzD46K9vDee6AARUVSA?usp=sharing"
-            target="_blank"
-            style="color: #db2777; font-weight: 600; text-decoration: underline;">
-            View analysis files on Google Drive →
-          </a>
-        </p>
+      <div class="accordion-item">
+        <button class="accordion-btn" type="button">My Analysis Files &amp; Workflows</button>
+        <div class="accordion-content">
+          <p>This folder contains my Alteryx workflows, exported analysis files, and Tableau-ready datasets, documenting how the four workstreams were prepared and visualized.</p>
+          <p><a href="https://drive.google.com/drive/folders/1HIntXNSbkloPbUzD46K9vDee6AARUVSA?usp=sharing" target="_blank" rel="noopener noreferrer">View analysis files on Google Drive →</a></p>
+        </div>
       </div>
     </div>
 
-    <h2>Reflection</h2>
-    <p>
-      This project strengthened my ability to approach data analysis from a business perspective.
-      Working with Alteryx helped me become more intentional about how data is prepared, structured, and defined before analysis, 
-      while Tableau pushed me to think about how to present findings in a way that is easy to understand.
-    </p>
+    <h2>09 · Reflection</h2>
+    <p>This project helped me connect technical data preparation with the business questions that make analysis valuable. Alteryx made it possible to build repeatable workflows for summarizing customers, combining datasets, and constructing analytical measures. Tableau challenged me to communicate those results clearly, choosing a visualization based on the decision it should support rather than its appearance alone.</p>
+    <p>Most importantly, I learned to distinguish an interesting pattern from a validated business recommendation. Understanding the limitations of transaction data—and identifying the additional analysis needed before taking action—is just as important as building the dashboard itself.</p>
 
-    <p>
-      Overall, this project reinforced my interest in business intelligence work that combines thoughtful data preparation,
-      clear storytelling, and actionable insights that decision makers can actually use.
-    </p>
-
-    <div style="text-align: center">
-      <a href="../index.html#academic-projects" class="back-link">← Back to Portfolio</a>
-    </div>
+    <div style="text-align:center"><a href="../index.html#projects" class="back-link">← Back to Portfolio</a></div>
   </main>
-
-  <footer>
-    <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const accordions = document.querySelectorAll(".accordion-btn");
-    accordions.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          content.classList.remove("open");
-        } else {
-          document.querySelectorAll(".accordion-content").forEach((c) => {
-            c.style.maxHeight = null;
-            c.classList.remove("open");
-            c.previousElementSibling.classList.remove("active");
-          });
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("open");
-        }
-      });
-    });
-  </script>
+  <script src="../project.js"></script>
+<footer class="site-footer">
+  <p>© 2026 Anna Do. All rights reserved.</p>
+</footer>
 </body>
 </html>

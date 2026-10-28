@@ -1,309 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Process Analysis & Systems Planning Project - Anna Do</title>
-  <meta name="description" content="Business process analysis, systems planning, and feasibility study. Project by Anna Do, Business Information Systems major at TCU." />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --pink-600: #db2777;
-      --ribbon: #ffe4f0;
-      --bg: #fff8fb;
-      --sub-bg: #fff2f6;
-    }
-
-    /* 🌸 Global */
-    body {
-      background: var(--bg);
-      color: #333;
-      font-family: "EB Garamond", serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0;
-      letter-spacing: 0.1px;
-    }
-    h1, h2, h3, p, ul, li, button, iframe {
-      font-family: "EB Garamond", serif !important;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-      color: var(--pink-600);
-      letter-spacing: 0.3px;
-      margin-top: 1.5em;
-    }
-    p, ul, li {
-      font-weight: 400;
-      font-size: 1.05rem;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-    ul li::marker {
-      color: var(--pink-600);
-    }
-
-    /* 🌷 Header */
-    .project-header {
-      background: #fff4f8;
-      text-align: center;
-      padding: 22px 20px;
-      border-bottom: 1px solid #f8dce8;
-      max-width: 780px;
-      margin: 40px auto 30px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
-    }
-    .project-header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px;
-    }
-    .project-header p {
-      font-size: 1rem;
-      color: #b05278;
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    /* 🌷 Content */
-    .project-content {
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-      line-height: 1.55;
-      font-size: 0.95rem;
-    }
-
-    /* 🎀 Main Ribbon Titles */
-    .project-content h2 {
-      position: relative;
-      display: inline-block;
-      background: var(--ribbon);
-      color: var(--pink-600);
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 6px 14px 6px 20px;
-      border-radius: 8px 20px 20px 8px;
-      margin: 24px 0 6px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
-    }
-    .project-content h2::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid var(--pink-600);
-    }
-
-        /* 🩰 Match BI Project bullet spacing */
-    .project-content ul {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 22px; /* same indent as BI project */
-      line-height: 1.45; /* tighter list spacing */
-    }
-
-    .project-content li {
-      margin-bottom: 2px; /* minimal space between items */
-    }
-
-    /* 🩰 Subsection Accordions */
-    .accordion-container {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .accordion-item {
-      margin-top: 14px;
-    }
-
-    .accordion-btn {
-      background: var(--sub-bg);
-      border: 1px solid #f2cce1;
-      color: #8f3a64; /* 🌸 softer mauve-rose text */
-      cursor: pointer;
-      padding: 12px 18px;
-      width: 100%;
-      text-align: left;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    }
-    .accordion-btn::before {
-      content: "▼";
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 1rem;
-      color: #b25684; /* softer pink arrow */
-      opacity: 0.9;
-    }
-    .accordion-btn:hover {
-      background-color: #fff3f7;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(244, 114, 182, 0.18);
-    }
-    .accordion-btn.active {
-      background-color: #fce6ef;
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.4s ease;
-      opacity: 0;
-      background-color: #fff8fb;
-      border-left: 3px solid #ffe4f0;
-      border-radius: 0 0 12px 12px;
-      padding: 0 8px;
-      margin-top: 2px;
-    }
-    .accordion-content.open {
-      opacity: 1;
-      padding: 12px 8px;
-    }
-
-    iframe {
-      border: 1px solid #f5d0e0;
-      border-radius: 10px;
-      background: #fff;
-      width: 100%;
-      height: 580px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
-      animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 🩷 Back link */
-    .back-link {
-      display: inline-block;
-      margin-top: 24px;
-      font-style: italic;
-      text-decoration: underline;
-      color: var(--pink-600);
-      font-size: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid #f8dce8;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      color: #999;
-      background: #fff;
-    }
-    footer .sheep {
-      transition: transform 0.3s ease;
-    }
-    footer:hover .sheep {
-      transform: translateX(6px);
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Retail Inventory &amp; Systems Optimization | Anna Do</title>
+<meta name="description" content="Retail process analysis and cloud-based inventory, checkout, and CRM systems planning case study." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../project.css">
+<style>
+.project-header{max-width:900px;padding:44px 32px;margin-top:35px;background:linear-gradient(135deg,#eaf0e1,#f7f6ec);border:1px solid #dce5d5}
+.project-header h1{font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.13;margin:10px 0 14px}
+.project-header p{line-height:1.6}
+.projec
+.project-content{max-width:900px}
+.project-lede{font-size:1.19rem;line-height:1.7;color:#536c4c;margin:26px 0 34px}
+.project-content h2{margin-top:42px}
+.project-content h3{font-size:1.4rem;color:#536c4c;margin:26px 0 8px}
+.project-content p,.project-content li{line-height:1.72}
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0 34px}
+.metric{padding:20px 14px;border:1px solid #dce5d5;border-radius:15px;background:#fffefa;text-align:center}
+.metric strong{display:block;font-family:'EB Garamond',serif;font-size:2.1rem;color:#536c4c;line-height:1.1}
+.metric span{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;color:#65745f;line-height:1.5;margin-top:7px}
+.two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0}
+.info-card{background:#fffefa;border:1px solid #dce5d5;border-radius:15px;padding:18px 20px}
+.info-card h3{margin:0 0 9px;font-size:1.3rem}
+.info-card p:last-child,.info-card ul:last-child{margin-bottom:0}
+.note{padding:17px 20px;margin:22px 0;border-left:4px solid #a4b996;border-radius:0 12px 12px 0;background:#f0f4e9}
+.note p:last-child{margin-bottom:0}
+.marker-highlight{background:linear-gradient(178deg,transparent 5%,rgba(250,225,125,.12) 10%,rgba(250,225,125,.38) 25%,rgba(255,233,154,.48) 55%,rgba(250,225,125,.28) 85%,transparent 97%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:3px 7px;border-radius:12px 7px 14px 9px}
+.project-content .accordion-btn{font-family:'DM Sans',sans-serif;font-size:.92rem}
+.project-content .accordion-content.open{padding:18px 16px}
+.project-content .accordion-content iframe{display:block;width:100%;height:min(75vh,650px);border:1px solid #dce5d5;border-radius:8px}
+.pdf-link{display:inline-block;margin:8px 0 14px;color:#536c4c;font-weight:600}
+.small-print{font-family:'DM Sans',sans-serif;font-size:.81rem;color:#738d63}
+.site-footer{text-align:center;padding:30px 20px;border-top:1px solid #dce5d5;background:#f7f6ec}
+.site-footer p{margin:0;font-size:.85rem;color:#536c4c}
+@media(max-width:700px){.metric-grid{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}.project-header{padding:28px 20px}}
+</style>
 </head>
-
 <body>
-  <header class="project-header">
-    <h1>Process Analysis & Systems Planning Project</h1>
-    <p>Business Process Evaluation · Systems Design · Feasibility Analysis</p>
-  </header>
-
-  <main class="project-content">
-    <h2>Project Overview</h2>
-    <p>
-      This project focused on analyzing and improving business processes within a simulated organization.
-      Our team conducted a full process analysis cycle - from identifying existing pain points to proposing
-      system-level solutions. We evaluated inventory tracking, customer relationship management, and other
-      operational workflows through SWOT and feasibility analyses, ultimately developing a systems plan for
-      a cloud-based implementation.
-    </p>
-
-    <h2>Tools & Skills</h2>
-    <ul>
-    <li>Microsoft Visio - business process modeling (as-is / to-be diagrams).</li>
-    <li>SWOT & feasibility analysis (technical, operational, economic.)</li>
-    <li>Gantt chart development & systems planning documentation.</li>
-    <li>User personas and user stories for requirements definition.</li>
-    </ul>
-
-    <h2>Project Documents</h2>
-    <div class="accordion-container">
-      <div class="accordion-item">
-        <button class="accordion-btn">Part 1: Business Process & Systems Analysis</button>
-        <div class="accordion-content">
-          <iframe src="system-planning1.pdf"></iframe>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-btn">Part 2: Systems Planning & Implementation Proposal</button>
-        <div class="accordion-content">
-          <iframe src="system-planning2.pdf"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <h2>Executive Presentation</h2>
-    <div class="accordion-container">
-      <div class="accordion-item">
-        <button class="accordion-btn">View Presentation Slides</button>
-        <div class="accordion-content">
-          <iframe src="system-planning3.pdf"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <h2>Reflection</h2>
-    <p>
-      Completing this Process Analysis and Systems Planning project deepened my understanding of how information systems
-      support organizational efficiency. Mapping business workflows through As-Is and To-Be models gave me a clearer view
-      of how process improvement aligns with system design. The feasibility study was especially eye-opening - balancing
-      cost, operational impact, and technology choices built a foundation for strategic systems thinking. This project
-      strengthened both my analytical and documentation skills, preparing me to bridge business analysis with systems
-      implementation in real projects.
-    </p>
-
-    <div style="text-align: center">
-      <a href="../index.html#academic-projects" class="back-link">← Back to Portfolio</a>
-    </div>
-  </main>
-
-  <footer>
-    <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const accordions = document.querySelectorAll(".accordion-btn");
-    accordions.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          content.classList.remove("open");
-        } else {
-          document.querySelectorAll(".accordion-content").forEach((c) => {
-            c.style.maxHeight = null;
-            c.classList.remove("open");
-            c.previousElementSibling.classList.remove("active");
-          });
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("open");
-        }
-      });
-    });
-  </script>
+<header class="project-header">
+<span class="project-kicker">Academic Team Project · Systems Analysis &amp; Design</span>
+<h1>Retail Inventory &amp; Systems Optimization</h1>
+<p>Business Process Modeling · Requirements Analysis · CRM · Feasibility Study · Systems Planning</p>
+</header>
+<main class="project-content">
+<p class="project-lede"><span class="marker-highlight">How can a small retailer keep its in-store and online inventory consistent while reducing manual work and improving customer service? Our team analyzed existing retail workflows and proposed a cloud-based inventory, checkout, and CRM solution supported by process models and a feasibility study.</span></p>
+<div class="metric-grid" aria-label="Project at a glance">
+<div class="metric"><strong>4</strong><span>team members</span></div>
+<div class="metric"><strong>12</strong><span>user stories across four proposed feature areas</span></div>
+<div class="metric"><strong>500 vs. 390</strong><span>weighted software evaluation scores: Square vs. Vend</span></div>
+</div>
+<div class="note"><p><strong>Project context.</strong> This was an academic systems analysis and implementation proposal, not a live software deployment. The written case uses the hypothetical name “ABC Vintage Store”; the executive presentation identifies the retail example as Doc’s Records. Operational improvements described below are proposed or estimated, not measured outcomes.</p></div>
+<h2>01 · The Business Challenge</h2>
+<p>The case centered on a vintage retailer selling records and collectibles through both a physical shop and an online storefront. Manual inventory updates created the risk of mismatched stock information, incomplete listings, delayed product updates, and lost customer confidence. The team also identified limited ways to capture customer preferences and feedback.</p>
+<div class="two-col">
+<div class="info-card"><h3>Current state</h3><ul><li>Manual inventory logging and periodic website updates</li><li>Potentially unavailable items still shown online</li><li>Staff-dependent checkout and inventory processes</li><li>Limited customer preference and feedback tracking</li></ul></div>
+<div class="info-card"><h3>Proposed future state</h3><ul><li>Real-time inventory synchronization across channels</li><li>Barcode-supported receiving and stock updates</li><li>Self-service checkout options</li><li>Integrated customer history, feedback, and promotions</li></ul></div>
+</div>
+<h2>02 · Process Analysis &amp; Requirements</h2>
+<p>We examined inventory receiving, sorting, online listings, checkout, and customer engagement. Our As-Is process model and customer-facing service blueprint helped locate manual steps and points where stock information could become outdated. We then created customer and employee personas and translated their needs into <strong>12 user stories</strong> spanning inventory tracking, online visibility, CRM, and system integration.</p>
+<p>The proposed To-Be swimlane model illustrated how scanning new arrivals, automatically synchronizing inventory, enabling self-checkout, and capturing purchase information could reduce repeated data entry and improve the shopping experience.</p>
+<h2>03 · Solution &amp; Software Evaluation</h2>
+<p>Our proposed solution combined a cloud-based point-of-sale platform with inventory and CRM functionality. We compared <strong>Square and Vend</strong> using weighted criteria covering real-time tracking, website visibility, customer engagement, ease of employee entry, and software cost.</p>
+<div class="two-col">
+<div class="info-card"><h3>Square · Recommended</h3><p><strong>500 weighted points.</strong> The team favored Square for its integrated retail and online functionality, customer engagement tools, accessible interface, and lower quoted subscription cost in our historical comparison.</p></div>
+<div class="info-card"><h3>Vend · Alternative</h3><p><strong>390 weighted points.</strong> Vend also supported retail inventory management, but our evaluation scored it lower on several website, CRM, usability, and cost criteria.</p></div>
+</div>
+<p class="small-print">Scores and vendor pricing reflect the team's original project-era assumptions and are not current product comparisons.</p>
+<h2>04 · Feasibility &amp; Implementation Planning</h2>
+<p>We considered economic, technical, and operational feasibility, including subscriptions and equipment, staff training, compatibility with existing systems, cloud connectivity, data security, and employee adoption. The implementation plan proposed staged preparation, data transfer, user training, testing, rollout, and post-launch monitoring.</p>
+<div class="note"><p><strong>Estimated benefit, not an observed result:</strong> the report discussed a potential increase in checkout capacity through reduced bottlenecks and self-service options. Because its numerical capacity estimates are not fully consistent, this case study does not present them as verified performance gains.</p></div>
+<h2>05 · Project Deliverables</h2>
+<p>Explore the original reports and presentation below. The documents contain the SWOT analysis, process maps, service blueprint, personas, user stories, vendor comparison, feasibility assessment, and implementation timeline.</p>
+<div class="accordion-container">
+<div class="accordion-item"><button class="accordion-btn" type="button" aria-expanded="false">Part 1 · Business Process &amp; Systems Analysis</button><div class="accordion-content"><a class="pdf-link" href="system-planning1.pdf" target="_blank" rel="noopener">Open PDF in a new tab ↗</a><iframe src="system-planning1.pdf" title="Business Process and Systems Analysis" loading="lazy"></iframe></div></div>
+<div class="accordion-item"><button class="accordion-btn" type="button" aria-expanded="false">Part 2 · Systems Planning &amp; Feasibility</button><div class="accordion-content"><a class="pdf-link" href="system-planning2.pdf" target="_blank" rel="noopener">Open PDF in a new tab ↗</a><iframe src="system-planning2.pdf" title="Systems Planning and Feasibility" loading="lazy"></iframe></div></div>
+<div class="accordion-item"><button class="accordion-btn" type="button" aria-expanded="false">Executive Presentation · Proposed Solution</button><div class="accordion-content"><a class="pdf-link" href="system-planning3.pdf" target="_blank" rel="noopener">Open PDF in a new tab ↗</a><iframe src="system-planning3.pdf" title="Executive Presentation" loading="lazy"></iframe></div></div>
+</div>
+<h2>06 · Reflection</h2>
+<p>This project strengthened my understanding of how systems planning begins with people and processes, not software. Building As-Is and To-Be models helped me see how small operational bottlenecks can affect both employee workload and customer experience. Creating user stories and evaluating competing platforms also showed me the importance of connecting technical features to business requirements, cost, feasibility, and change management.</p>
+<p>My biggest takeaway was that recommending a system is only one part of improving a process. A realistic implementation plan also needs training, stakeholder alignment, risk mitigation, and a way to evaluate whether the proposed changes actually work.</p>
+<div style="text-align:center"><a href="../index.html#projects" class="back-link">← Back to Portfolio</a></div>
+</main>
+<script src="../project.js"></script>
+<footer class="site-footer"><p>© 2026 Anna Do. All rights reserved.</p></footer>
 </body>
 </html>
->

@@ -3,298 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accounting Project - Anna Do</title>
-  <meta name="description" content="Financial accounting analysis, spreadsheet modeling, and data interpretation. Project by Anna Do, Business Information Systems major at TCU." />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
-
+  <title>Apple vs. Microsoft Financial Performance Analysis | Anna Do</title>
+  <meta name="description" content="Comparative analysis of Apple and Microsoft financial statements from 2020 to 2022, examining profitability, efficiency, liquidity and shareholder returns." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../project.css" />
   <style>
-    :root {
-      --pink-600: #db2777;
-      --ribbon: #ffe4f0;
-      --bg: #fff8fb;
-      --sub-bg: #fff2f6;
-    }
-
-    /* 🌸 Global */
-    body {
-      background: var(--bg);
-      color: #333;
-      font-family: "EB Garamond", serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0;
-      letter-spacing: 0.1px;
-    }
-    h1, h2, h3, p, ul, li, button, iframe {
-      font-family: "EB Garamond", serif !important;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-      color: var(--pink-600);
-      letter-spacing: 0.3px;
-      margin-top: 1.5em;
-    }
-    p, ul, li {
-      font-weight: 400;
-      font-size: 1.05rem;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-    ul li::marker {
-      color: var(--pink-600);
-    }
-
-    /* 🌷 Header */
-    .project-header {
-      background: #fff4f8;
-      text-align: center;
-      padding: 22px 20px;
-      border-bottom: 1px solid #f8dce8;
-      max-width: 780px;
-      margin: 40px auto 30px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
-    }
-    .project-header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px;
-    }
-    .project-header p {
-      font-size: 1rem;
-      color: #b05278;
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    /* 🌷 Content */
-    .project-content {
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-      line-height: 1.55;
-      font-size: 0.95rem;
-    }
-
-    /* 🎀 Main Ribbon Titles */
-    .project-content h2 {
-      position: relative;
-      display: inline-block;
-      background: var(--ribbon);
-      color: var(--pink-600);
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 6px 14px 6px 20px;
-      border-radius: 8px 20px 20px 8px;
-      margin: 24px 0 6px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
-    }
-    .project-content h2::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid var(--pink-600);
-    }
-
-    /* 🩰 Bullet spacing */
-    .project-content ul {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 22px;
-      line-height: 1.45;
-    }
-
-    .project-content li {
-      margin-bottom: 2px;
-    }
-
-    /* 🩰 Accordions */
-    .accordion-container {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .accordion-item {
-      margin-top: 14px;
-    }
-
-    .accordion-btn {
-      background: var(--sub-bg);
-      border: 1px solid #f2cce1;
-      color: #8f3a64;
-      cursor: pointer;
-      padding: 12px 18px;
-      width: 100%;
-      text-align: left;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    }
-    .accordion-btn::before {
-      content: "▼";
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 1rem;
-      color: #b25684;
-      opacity: 0.9;
-    }
-    .accordion-btn:hover {
-      background-color: #fff3f7;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(244, 114, 182, 0.18);
-    }
-    .accordion-btn.active {
-      background-color: #fce6ef;
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.4s ease;
-      opacity: 0;
-      background-color: #fff8fb;
-      border-left: 3px solid #ffe4f0;
-      border-radius: 0 0 12px 12px;
-      padding: 0 8px;
-      margin-top: 2px;
-    }
-    .accordion-content.open {
-      opacity: 1;
-      padding: 12px 8px;
-    }
-
-    iframe {
-      border: 1px solid #f5d0e0;
-      border-radius: 10px;
-      background: #fff;
-      width: 100%;
-      height: 580px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
-      animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 🩷 Back link */
-    .back-link {
-      display: inline-block;
-      margin-top: 24px;
-      font-style: italic;
-      text-decoration: underline;
-      color: var(--pink-600);
-      font-size: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid #f8dce8;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      color: #999;
-      background: #fff;
-    }
-    footer .sheep {
-      transition: transform 0.3s ease;
-    }
-    footer:hover .sheep {
-      transform: translateX(6px);
-    }
+    :root { --cream:#F7F6EC; --forest:#536C4C; --dark:#3D493C; --muted:#738D63; --sage:#E4EBD9; }
+    body { background:var(--cream); color:var(--dark); }
+    .project-header h1 { font-family:'EB Garamond',Georgia,serif; }
+    .project-content { line-height:1.85; }
+    .project-intro { font-size:1.12rem; line-height:2; color:var(--forest); margin-bottom:32px; }
+    .marker-highlight { background:linear-gradient(178deg,transparent 5%,rgba(250,225,125,.12) 10%,rgba(250,225,125,.38) 25%,rgba(255,233,154,.48) 55%,rgba(250,225,125,.28) 85%,transparent 97%); -webkit-box-decoration-break:clone; box-decoration-break:clone; padding:3px 7px; border-radius:12px 7px 14px 9px; }
+    .project-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:28px 0 42px; }
+    .project-metric { background:var(--sage); border:1px solid #d7e2ce; border-radius:16px; padding:20px 16px; text-align:center; }
+    .project-metric strong { display:block; font-family:'EB Garamond',Georgia,serif; font-size:2.05rem; line-height:1.1; color:var(--forest); }
+    .project-metric span { display:block; font-size:.8rem; line-height:1.5; margin-top:9px; }
+    .project-metric small { display:block; font-size:.7rem; color:var(--muted); margin-top:7px; }
+    .insight-list { padding-left:22px; }
+    .insight-list li { margin-bottom:13px; }
+    .project-note { font-size:.87rem; color:var(--muted); }
+    .site-footer { text-align:center; padding:30px 20px; border-top:1px solid #DCE5D5; background:var(--cream); }
+    .site-footer p { margin:0; font-size:.85rem; color:var(--forest); }
+    @media(max-width:640px) { .project-metrics { grid-template-columns:1fr; } .project-metric { padding:15px; } }
   </style>
 </head>
-
 <body>
   <header class="project-header">
-    <h1>Accounting Project</h1>
-    <p>Financial Analysis · Spreadsheet Modeling · Data Interpretation</p>
+    <h1>Apple vs. Microsoft Financial Performance Analysis</h1>
+    <p>Financial Statement Analysis · Excel Modeling · Ratio Analysis</p>
   </header>
-
   <main class="project-content">
-    <h2>Project Overview</h2>
-    <p>
-      This project involved conducting a comparative financial statement analysis of Apple and Microsoft using their 2020-2022 10-K filings. 
-      My partner and I focused on interpreting real corporate financial statements - examining income statements, balance sheets, and cash flow data to identify performance trends. 
-      My analysis explored profitability, liquidity, efficiency, and stockholder value metrics to 
-      provide a clear picture of how the two tech giants differ in strategy and financial health.
-    </p>
-
-    <h2>Tools & Skills</h2>
-    <ul>
-      <li>Financial statement analysis using SEC 10-K filings (Apple & Microsoft).</li>
-      <li>Ratio analysis: profitability, liquidity, efficiency, ROA, ROE, EPS.</li>
-      <li>Component percentage analysis.</li>
-      <li>Comparative evaluation for investment decision-making.</li>
-      <li>Interpreting stockholder equity and financial leverage relationships.</li>
+    <h2>01 · Project Overview</h2>
+    <p class="project-intro"><span class="marker-highlight">How do two of the world's largest technology companies compare in profitability, efficiency, and financial stability? My partner and I analyzed Apple and Microsoft's 2020–2022 financial statements to explore how their different business models translate into financial performance.</span></p>
+    <div class="project-metrics">
+      <div class="project-metric"><strong>43.65%</strong><span>Apple revenue growth, 2020–2022</span><small>Microsoft: 38.64%</small></div>
+      <div class="project-metric"><strong>36.7%</strong><span>Microsoft net profit margin, 2022</span><small>Apple: 25.3%</small></div>
+      <div class="project-metric"><strong>1.12×</strong><span>Apple asset turnover, 2022</span><small>Microsoft: 0.57×</small></div>
+    </div>
+    <h2>02 · Approach &amp; Analysis</h2>
+    <p>Using the companies' annual 10-K filings, we organized financial statement data in a spreadsheet and performed common-size analysis of income statements and balance sheets. We calculated and compared gross profit margin, net profit margin, earnings per share, total asset turnover, and current ratios across three fiscal years. We also explored how net profit margin, asset turnover, and financial leverage contribute to return on assets (ROA) and return on equity (ROE).</p>
+    <h2>03 · Key Findings</h2>
+    <ul class="insight-list">
+      <li><strong>Growth:</strong> Both companies increased revenue and net income from 2020 to 2022. Apple recorded faster revenue growth over the period, while Microsoft's net profit margin remained higher.</li>
+      <li><strong>Operating efficiency:</strong> Apple's 2022 asset turnover of 1.12 was nearly twice Microsoft's 0.57, suggesting Apple generated more revenue per dollar of assets.</li>
+      <li><strong>Liquidity:</strong> Microsoft's 2022 current ratio was 1.78, compared with Apple's 0.88, indicating a stronger short-term liquidity position by this measure.</li>
+      <li><strong>Investment perspective:</strong> We considered how profitability, asset efficiency, leverage, and broader market risks inform a financial assessment rather than relying on a single ratio.</li>
     </ul>
-
-    <h2>Project Documents</h2>
+    <p class="project-note">All figures refer to the 2020–2022 period examined in this Fall 2023 academic project; they are not current financial metrics or investment advice.</p>
+    <h2>04 · Project Documents</h2>
     <div class="accordion-container">
-
       <div class="accordion-item">
-        <button class="accordion-btn">Part 1: Financial Workbook (Excel Viewer)</button>
+        <button class="accordion-btn">Part 1: Financial Analysis Workbook</button>
         <div class="accordion-content">
-          <!-- placeholder OneDrive/Excel Online link -->
-           <iframe
-           src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6JUhGLKrdRuz9IefzANWIxDLonK7rvC4mp2m7YUwJlddKP9ukCXp6bcDxwVwMwg/pubhtml?widget=true&amp;headers=false"
-          frameborder="0"></iframe>
+          <iframe title="Apple and Microsoft financial analysis workbook" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6JUhGLKrdRuz9IefzANWIxDLonK7rvC4mp2m7YUwJlddKP9ukCXp6bcDxwVwMwg/pubhtml?widget=true&amp;headers=false"></iframe>
         </div>
       </div>
-
       <div class="accordion-item">
-        <button class="accordion-btn">Part 2: Project Summary & Report</button>
+        <button class="accordion-btn">Part 2: Financial Analysis Report</button>
         <div class="accordion-content">
-          <iframe src="accounting-project.pdf"></iframe>
+          <iframe title="Apple and Microsoft financial analysis report" src="accounting-project.pdf"></iframe>
         </div>
       </div>
     </div>
-
-    <h2>Reflection</h2>
-    <p>
-      Completing this financial analysis project strengthened my understanding of how real companies communicate performance through formal financial statements. 
-      Working directly with Apple and Microsoft’s 10-K filings taught me how to interpret multi-year trends, evaluate profitability and efficiency ratios, and connect financial outcomes to strategic differences between firms. 
-      I gained hands-on experience comparing industry leaders side by side - identifying how factors like asset turnover, margin structure, and leverage affect ROA and ROE. 
-      More importantly, this project helped me see how financial information guides investment decisions and reflects a company’s long-term stability and competitive positioning.
-    </p>
-
-    <div style="text-align: center">
-      <a href="../index.html#academic-projects" class="back-link">← Back to Portfolio</a>
-    </div>
+    <h2>05 · Reflection</h2>
+    <p>This project helped me move beyond reading individual financial figures to understanding the stories they tell together. Comparing Apple and Microsoft showed me why higher profit margins do not necessarily mean greater asset efficiency, and how liquidity, leverage, and business strategy shape a company's financial position. Working with real 10-K filings also strengthened my spreadsheet modeling and analytical communication skills, especially when translating financial ratios into conclusions someone could use to evaluate a business.</p>
+    <div style="text-align:center"><a href="../index.html#projects" class="back-link">← Back to Portfolio</a></div>
   </main>
-
-  <footer>
-    <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const accordions = document.querySelectorAll(".accordion-btn");
-    accordions.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          content.classList.remove("open");
-        } else {
-          document.querySelectorAll(".accordion-content").forEach((c) => {
-            c.style.maxHeight = null;
-            c.classList.remove("open");
-            c.previousElementSibling.classList.remove("active");
-          });
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("open");
-        }
-      });
-    });
-  </script>
+  <footer class="site-footer"><p>© 2026 Anna Do. All rights reserved.</p></footer>
+  <script src="../project.js"></script>
 </body>
 </html>

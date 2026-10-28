@@ -1,315 +1,633 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nike Digital Transformation Report - Anna Do</title>
-  <meta name="description" content="Hypothetical digital transformation consulting report for Nike, focusing on IoT, 3D/4D printing, subscriptions, and AI/AR. Project by Anna Do, Business Information Systems major at TCU." />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Nike Digital Transformation | Anna Do</title>
+  <meta
+    content="A hypothetical 2023 Nike digital transformation strategy developed by HypnoTech Consulting, featuring emerging technologies, Tableau forecasts, and risk planning."
+    name="description" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=EB+Garamond:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link href="../styles.css" rel="stylesheet" />
+  <link href="../project.css" rel="stylesheet" />
   <style>
     :root {
-      --pink-600: #db2777;
-      --ribbon: #ffe4f0;
-      --bg: #fff8fb;
-      --sub-bg: #fff2f6;
+      --cream: #F7F6EC;
+      --forest: #536C4C;
+      --dark: #3D493C;
+      --muted: #738D63;
+      --sage: #E4EBD9;
     }
 
-    /* 🌸 Global */
     body {
-      background: var(--bg);
-      color: #333;
-      font-family: "EB Garamond", serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0;
-      letter-spacing: 0.1px;
-    }
-    h1, h2, h3, p, ul, li, button, iframe {
-      font-family: "EB Garamond", serif !important;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-      color: var(--pink-600);
-      letter-spacing: 0.3px;
-      margin-top: 1.5em;
-    }
-    p, ul, li {
-      font-weight: 400;
-      font-size: 1.05rem;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-    ul li::marker {
-      color: var(--pink-600);
+      background: var(--cream);
+      color: var(--dark);
     }
 
-    /* 🌷 Header */
-    .project-header {
-      background: #fff4f8;
-      text-align: center;
-      padding: 22px 20px;
-      border-bottom: 1px solid #f8dce8;
-      max-width: 780px;
-      margin: 40px auto 30px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
-    }
     .project-header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px;
-    }
-    .project-header p {
-      font-size: 1rem;
-      color: #b05278;
-      margin: 0;
-      line-height: 1.3;
+      font-family: 'EB Garamond', Georgia, serif;
     }
 
-    /* subtle disclaimer under header */
-    .disclaimer {
-      font-size: 0.9rem;
-      color: #a15a7c;
-      font-style: italic;
-      margin-top: 8px;
-    }
-
-    /* 🌷 Content */
     .project-content {
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-      line-height: 1.55;
-      font-size: 0.95rem;
+      line-height: 1.85;
     }
 
-    /* 🎀 Main Ribbon Titles */
-    .project-content h2 {
-      position: relative;
-      display: inline-block;
-      background: var(--ribbon);
-      color: var(--pink-600);
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 6px 14px 6px 20px;
-      border-radius: 8px 20px 20px 8px;
-      margin: 24px 0 6px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
-    }
-    .project-content h2::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid var(--pink-600);
+    .project-intro {
+      font-size: 1.12rem;
+      line-height: 2;
+      color: var(--forest);
+      margin-bottom: 32px;
     }
 
-    /* 🩰 Bullet spacing */
-    .project-content ul {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 22px;
-      line-height: 1.45;
+    .marker-highlight {
+      background: linear-gradient(178deg, transparent 5%, rgba(250, 225, 125, .12) 10%, rgba(250, 225, 125, .38) 25%, rgba(255, 233, 154, .48) 55%, rgba(250, 225, 125, .28) 85%, transparent 97%);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      padding: 3px 7px;
+      border-radius: 12px 7px 14px 9px;
     }
 
-    .project-content li {
-      margin-bottom: 2px;
+    .project-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 28px 0 42px;
     }
 
-    /* 🩰 Accordions */
-    .accordion-container {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .accordion-item {
-      margin-top: 14px;
-    }
-
-    .accordion-btn {
-      background: var(--sub-bg);
-      border: 1px solid #f2cce1;
-      color: #8f3a64;
-      cursor: pointer;
-      padding: 12px 18px;
-      width: 100%;
-      text-align: left;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    }
-    .accordion-btn::before {
-      content: "▼";
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 1rem;
-      color: #b25684;
-      opacity: 0.9;
-    }
-    .accordion-btn:hover {
-      background-color: #fff3f7;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(244, 114, 182, 0.18);
-    }
-    .accordion-btn.active {
-      background-color: #fce6ef;
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.4s ease;
-      opacity: 0;
-      background-color: #fff8fb;
-      border-left: 3px solid #ffe4f0;
-      border-radius: 0 0 12px 12px;
-      padding: 0 8px;
-      margin-top: 2px;
-    }
-    .accordion-content.open {
-      opacity: 1;
-      padding: 12px 8px;
-    }
-
-    iframe {
-      border: 1px solid #f5d0e0;
-      border-radius: 10px;
-      background: #fff;
-      width: 100%;
-      height: 580px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
-      animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 🩷 Back link */
-    .back-link {
-      display: inline-block;
-      margin-top: 24px;
-      font-style: italic;
-      text-decoration: underline;
-      color: var(--pink-600);
-      font-size: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid #f8dce8;
+    .project-metric {
+      background: var(--sage);
+      border: 1px solid #d7e2ce;
+      border-radius: 16px;
+      padding: 20px 16px;
       text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      color: #999;
-      background: #fff;
     }
-    footer .sheep {
-      transition: transform 0.3s ease;
+
+    .project-metric strong {
+      display: block;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 2.05rem;
+      line-height: 1.1;
+      color: var(--forest);
     }
-    footer:hover .sheep {
-      transform: translateX(6px);
+
+    .project-metric span {
+      display: block;
+      font-size: .8rem;
+      line-height: 1.5;
+      margin-top: 9px;
+    }
+
+    .project-metric small {
+      display: block;
+      font-size: .7rem;
+      color: var(--muted);
+      margin-top: 7px;
+    }
+
+    .insight-list {
+      padding-left: 22px;
+    }
+
+    .insight-list li {
+      margin-bottom: 13px;
+    }
+
+    .project-note {
+      font-size: .87rem;
+      color: var(--muted);
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 20px 0 28px;
+    }
+
+    .decision-card {
+      background: #fffdf6;
+      border: 1px solid #dce5d5;
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .decision-card h3 {
+      margin: 0 0 10px;
+      color: var(--forest);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.55rem;
+    }
+
+    .decision-card p {
+      margin: 0;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid #DCE5D5;
+      background: var(--cream);
+    }
+
+    .site-footer p {
+      margin: 0;
+      font-size: .85rem;
+      color: var(--forest);
+    }
+
+    @media(max-width:640px) {
+
+      .project-metrics,
+      .decision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-metric {
+        padding: 15px;
+      }
+    }
+
+    .disclaimer {
+      font-size: .85rem;
+      color: var(--muted);
+      max-width: 800px;
+      margin: 12px auto 0;
+      line-height: 1.6;
+    }
+
+    .project-metric strong {
+      overflow-wrap: anywhere;
+    }
+
+    /* Nike content components, styled to match the shared project template */
+    .project-header .header-eyebrow {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 10px
+    }
+
+    .project-header .header-summary {
+      font-size: 1rem;
+      color: var(--forest);
+      margin-top: 8px
+    }
+
+    .project-header .header-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px 0 0
+    }
+
+    .project-header .header-tags span {
+      font-size: .76rem;
+      border: 1px solid #c5d2bc;
+      padding: 4px 11px;
+      border-radius: 30px;
+      color: var(--forest)
+    }
+
+    .project-disclosure {
+      background: #fffdf8;
+      border-left: 3px solid #a9ba9b;
+      border-radius: 0 12px 12px 0;
+      padding: 17px 20px;
+      margin: 20px 0 36px;
+      font-size: .88rem;
+      line-height: 1.8;
+      color: var(--forest)
+    }
+
+    .project-disclosure p {
+      margin: 0;
+      font-size: inherit
+    }
+
+    .project-content .section-kicker {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 32px 0 0
+    }
+
+    .project-content .section-kicker+h2 {
+      margin-top: 7px
+    }
+
+    .project-content .project-intro {
+      font-size: 1.12rem;
+      line-height: 2;
+      color: var(--forest);
+      margin-bottom: 30px
+    }
+
+    .project-content .marker-highlight {
+      background: linear-gradient(178deg, transparent 5%, rgba(250, 225, 125, .12) 10%, rgba(250, 225, 125, .38) 25%, rgba(255, 233, 154, .48) 55%, rgba(250, 225, 125, .28) 85%, transparent 97%);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      padding: 3px 7px;
+      border-radius: 12px 7px 14px 9px
+    }
+
+    .project-content .project-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 25px 0 40px
+    }
+
+    .project-content .project-metric {
+      background: var(--sage);
+      border: 1px solid #d7e2ce;
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center
+    }
+
+    .project-content .project-metric strong {
+      display: block;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 2.05rem;
+      line-height: 1.1;
+      color: var(--forest)
+    }
+
+    .project-content .project-metric span {
+      display: block;
+      font-size: .8rem;
+      line-height: 1.5;
+      margin-top: 9px
+    }
+
+    .project-content .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 20px 0 28px
+    }
+
+    .project-content .decision-card {
+      background: #fffdf6;
+      border: 1px solid #dce5d5;
+      border-radius: 16px;
+      padding: 22px
+    }
+
+    .project-content .decision-card h3 {
+      margin: 7px 0 10px;
+      color: var(--forest);
+      font-size: 1.55rem
+    }
+
+    .project-content .decision-card p {
+      margin: 0 0 12px
+    }
+
+    .project-content .decision-card .card-eyebrow {
+      font-size: .72rem;
+      letter-spacing: .13em;
+      color: #8ba27d
+    }
+
+    .project-content .decision-card .card-outcome {
+      border-top: 1px solid #dce5d5;
+      padding-top: 12px;
+      margin-top: 16px;
+      color: var(--forest);
+      font-size: .86rem
+    }
+
+    .project-content .role-panel,
+    .project-content .forecast-panel {
+      background: var(--sage);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 22px 0
+    }
+
+    .project-content .role-panel h3,
+    .project-content .forecast-panel h3 {
+      margin-top: 0
+    }
+
+    .project-content .role-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start
+    }
+
+    .project-content .roadmap {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 22px 0
+    }
+
+    .project-content .roadmap-item {
+      background: #fffdf6;
+      border-top: 4px solid #9caf90;
+      border-radius: 0 0 12px 12px;
+      padding: 14px 11px
+    }
+
+    .project-content .roadmap-item strong {
+      display: block;
+      color: var(--forest);
+      font-size: 1.25rem
+    }
+
+    .project-content .roadmap-item p {
+      font-size: .8rem;
+      margin: 6px 0
+    }
+
+    .project-content .forecast-bars {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0
+    }
+
+    .project-content .forecast-row {
+      display: grid;
+      grid-template-columns: 105px 1fr 78px;
+      align-items: center;
+      gap: 12px;
+      font-size: .82rem
+    }
+
+    .project-content .forecast-track {
+      height: 14px;
+      background: #d5dfce;
+      border-radius: 30px;
+      overflow: hidden
+    }
+
+    .project-content .forecast-fill {
+      height: 100%;
+      background: #738d63;
+      border-radius: 30px
+    }
+
+    .project-content .project-note {
+      font-size: .85rem;
+      color: var(--muted)
+    }
+
+    .project-content .doclink {
+      display: inline-block;
+      margin: 5px 0 12px;
+      font-size: .86rem
+    }
+
+    @media(max-width:640px) {
+
+      .project-content .project-metrics,
+      .project-content .decision-grid,
+      .project-content .role-layout {
+        grid-template-columns: 1fr
+      }
+
+      .project-content .roadmap {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .project-content .forecast-row {
+        grid-template-columns: 90px 1fr 68px;
+        gap: 7px;
+        font-size: .72rem
+      }
     }
   </style>
 </head>
 
 <body>
   <header class="project-header">
-    <h1>Nike Digital Transformation Project</h1>
-    <p>Emerging Technologies · Customer Experience · Strategic Transformation</p>
-    <p class="disclaimer">
-      This consulting project is a hypothetical academic exercise and is not affiliated with, sponsored by, or endorsed by Nike, Inc.
-    </p>
+    <p class="header-eyebrow">Strategy &amp; technology · Academic consulting case study · 2023</p>
+    <h1>Reimagining Nike's Digital Future<span style="color:#8a9f80">.</span></h1>
+    <p class="header-summary">A hypothetical digital transformation strategy connecting connected footwear, adaptive
+      materials, AI-powered shopping, and a subscription economy.</p>
+    <div class="header-tags"><span>Digital strategy</span><span>4D printing</span><span>AI + AR</span><span>Tableau
+        forecasting</span><span>Risk management</span></div>
   </header>
-
   <main class="project-content">
-    <h2>Project Overview</h2>
-    <p>
-      As part of a team-based consulting project, we developed a hypothetical digital transformation proposal for Nike, focusing on how emerging
-      technologies could reshape its customer experience and operations. Working under the name <strong><em>HypnoTech Consulting LLC</em></strong>, our team analyzed
-      Nike’s current position in the athletic and athleisure market and designed a multi-year roadmap centered on four pillars: IoT-enabled footwear,
-      3D and 4D printing for adaptive products, a subscription-based rental model, and a redesigned mobile app featuring AI recommendations and
-      AR try-on. The project combined market research, technology selection, financial projections, and risk analysis to imagine how Nike could
-      maintain its leadership in a rapidly evolving digital landscape, while remaining entirely hypothetical and classroom-based.
-    </p>
-
-    <h2>Tools & Skills</h2>
-    <ul>
-      <li>Digital transformation analysis and opportunity assessment.</li>
-      <li>Technology roadmap design (IoT, 3D/4D printing, subscriptions, AI/AR).</li>
-      <li>Storyboarding and mobile app interface mockups for customer experience.</li>
-      <li>Tableau dashboards to model projected revenue, gross profit, and cost impacts.</li>
-      <li>Risk identification and mitigation planning (cybersecurity, investment, adoption).</li>
-      <li>Team-based consulting deliverables and executive-style communication.</li>
-    </ul>
-
-    <h2>Project Documents</h2>
+    <aside class="project-disclosure">
+      <p class="disclaimer"><strong>Academic project disclosure:</strong> This is a hypothetical 2023 classroom
+        consulting exercise by HypnoTech Consulting LLC. It was not commissioned by, affiliated with, sponsored by, or
+        endorsed by Nike, Inc. All projections and concepts are illustrative, not actual Nike performance or product
+        announcements.</p>
+    </aside>
+    <p class="section-kicker">01 / The challenge</p>
+    <h2>What if footwear could do more?</h2>
+    <p class="project-intro"><span class="marker-highlight">Our team explored how Nike could move beyond one-time
+        product transactions toward connected, personalized, and ongoing customer relationships — while evaluating the
+        technology investments and operational risks that transformation would require.</span></p>
+    <p>Working as <strong>HypnoTech Consulting LLC</strong>, a four-person academic team, we developed a proposal
+      spanning product design, customer experience, new data sources, financial projections, and change management.</p>
+    <div class="project-metrics">
+      <div class="project-metric"><strong>4</strong><span>Proposed transformation pillars</span></div>
+      <div class="project-metric"><strong>2024–28</strong><span>Original hypothetical implementation horizon</span>
+      </div>
+      <div class="project-metric"><strong>2</strong><span>Tableau financial dashboards in the report</span></div>
+    </div>
+    <p class="section-kicker">02 / The strategy</p>
+    <h2>Four connected ideas, one customer journey</h2>
+    <div class="decision-grid">
+      <article class="decision-card"><span class="card-eyebrow">PILLAR 01</span>
+        <h3>Connected footwear · IoT</h3>
+        <p>Explore sensors embedded in shoes to capture activity and performance signals, sync insights to an app, and
+          support personalized feedback.</p>
+        <p class="card-outcome"><strong>Business opportunity:</strong> richer product feedback and customer engagement.
+        </p>
+      </article>
+      <article class="decision-card"><span class="card-eyebrow">PILLAR 02</span>
+        <h3>Adaptive footwear · 3D/4D</h3>
+        <p>Investigate thermochromic and photochromic materials, plus shape-memory polymers or alloys, for footwear that
+          could respond to environmental changes.</p>
+        <p class="card-outcome"><strong>Business opportunity:</strong> product differentiation, customization, and
+          material innovation.</p>
+      </article>
+      <article class="decision-card"><span class="card-eyebrow">PILLAR 03</span>
+        <h3>Nike Perks · Subscription</h3>
+        <p>Propose a monthly footwear rental model, rotating styles, customer preference profiles, and logistics
+          partnerships to support recurring engagement.</p>
+        <p class="card-outcome"><strong>Business opportunity:</strong> recurring revenue and demand insights.</p>
+      </article>
+      <article class="decision-card"><span class="card-eyebrow">PILLAR 04</span>
+        <h3>Shopping app · AI + AR</h3>
+        <p>Conceptualize a redesigned mobile experience with conversational product recommendations, personalized
+          discovery, and virtual try-on.</p>
+        <p class="card-outcome"><strong>Business opportunity:</strong> more intuitive discovery and tailored shopping.
+        </p>
+      </article>
+    </div>
+    <p class="project-note">These are proposed concepts from the 2023 academic report, not confirmed technical
+      capabilities or launches.</p>
+    <p class="section-kicker">03 / My contribution</p>
+    <h2>Where I focused my work</h2>
+    <div class="role-layout">
+      <div>
+        <p>Our team divided the research and writing by topic. My documented contributions were <strong>3D/4D printing
+            strategy, projected financial impact, and risks and mitigations</strong>.</p>
+        <p>For the adaptive footwear concept, I researched how smart materials might support color-changing or
+          shape-responsive products, and identified potential research and manufacturing collaborators for further
+          exploration.</p>
+        <p>For the business case, I developed a phased financial narrative supported by <strong>Tableau
+            dashboards</strong>, considering revenue categories, cost of sales, operating expenses, and property, plant,
+          and equipment.</p>
+      </div>
+      <aside class="role-panel">
+        <h3>My workstreams</h3>
+        <ul>
+          <li><strong>Technology assessment:</strong> 3D/4D printing applications and possible partnerships</li>
+          <li><strong>Financial scenario modeling:</strong> projected revenue, gross profit, and expense trends</li>
+          <li><strong>Risk strategy:</strong> data privacy, investment requirements, and adoption challenges</li>
+        </ul>
+      </aside>
+    </div>
+    <p class="section-kicker">04 / Implementation</p>
+    <h2>A transformation in stages</h2>
+    <p>Rather than proposing an all-at-once rollout, our 2023 plan sequenced experiments, launch concepts, and
+      refinement across five years.</p>
+    <div class="roadmap">
+      <div class="roadmap-item"><strong>2024</strong>
+        <p>Pilot IoT and mobile AI/AR concepts</p>
+      </div>
+      <div class="roadmap-item"><strong>2025</strong>
+        <p>Refine, gather feedback, stabilize</p>
+      </div>
+      <div class="roadmap-item"><strong>2026</strong>
+        <p>Introduce subscription and 4D trials</p>
+      </div>
+      <div class="roadmap-item"><strong>2027</strong>
+        <p>Improve adoption and offerings</p>
+      </div>
+      <div class="roadmap-item"><strong>2028</strong>
+        <p>Hypothetical full-scale maturity</p>
+      </div>
+    </div>
+    <p class="project-note">This timeline reproduces the proposal's original forecast horizon; it does not describe what
+      Nike actually implemented.</p>
+    <p class="section-kicker">05 / Financial scenario</p>
+    <h2>Turning ideas into a business case</h2>
+    <p>To make the strategy more concrete, we modeled how the proposed technologies <em>might</em> affect Nike Brand
+      financial performance. The forecasts included increased revenue alongside higher investment, marketing,
+      technology, and operating costs.</p>
+    <div class="project-metrics">
+      <div class="project-metric"><strong>$74.95B</strong><span>Illustrative 2028 Nike Brand revenue forecast</span>
+      </div>
+      <div class="project-metric"><strong>$37.07B</strong><span>Illustrative 2028 gross profit forecast</span></div>
+      <div class="project-metric"><strong>+57%</strong><span>Modeled revenue growth by 2028 versus 2023 baseline</span>
+      </div>
+    </div>
+    <div class="forecast-panel">
+      <h3>Projected Nike Brand revenue</h3>
+      <p class="caption">Selected values from the team's original Tableau forecast, USD billions; not actual Nike
+        financial results.</p>
+      <div class="forecast-bars">
+        <div class="forecast-row"><span>2023 baseline</span>
+          <div class="forecast-track">
+            <div class="forecast-fill" style="width:65.1%"></div>
+          </div><strong>$48.76B</strong>
+        </div>
+        <div class="forecast-row"><span>2024 forecast</span>
+          <div class="forecast-track">
+            <div class="forecast-fill" style="width:74.8%"></div>
+          </div><strong>$56.04B</strong>
+        </div>
+        <div class="forecast-row"><span>2026 forecast</span>
+          <div class="forecast-track">
+            <div class="forecast-fill" style="width:86.6%"></div>
+          </div><strong>$64.89B</strong>
+        </div>
+        <div class="forecast-row"><span>2028 forecast</span>
+          <div class="forecast-track">
+            <div class="forecast-fill" style="width:100%"></div>
+          </div><strong>$74.95B</strong>
+        </div>
+      </div>
+      <p class="smallnote">Financial values are rounded from the original academic dashboard. These are scenario
+        assumptions, not validated predictions. See the complete report for the two Tableau dashboards and accompanying
+        reasoning.</p>
+    </div>
+    <p class="section-kicker">06 / Risk &amp; responsibility</p>
+    <h2>Innovation needs guardrails</h2>
+    <div class="decision-grid">
+      <div class="decision-card">
+        <h3>Privacy &amp; security</h3>
+        <p>Connected products and personalization create sensitive data risks. We recommended layered security,
+          authentication, encryption, and dedicated oversight.</p>
+      </div>
+      <div class="decision-card">
+        <h3>Capital investment</h3>
+        <p>New hardware, research, logistics, and platforms require significant spending. A phased approach would allow
+          investment decisions to respond to early results.</p>
+      </div>
+      <div class="decision-card">
+        <h3>Adoption &amp; change</h3>
+        <p>Employees and customers may not immediately embrace unfamiliar offerings. Training, communication, feedback,
+          and iterative pilots were essential.</p>
+      </div>
+    </div>
+    <p class="section-kicker">07 / Recommendations</p>
+    <h2>From vision to validation</h2>
+    <div class="decision-grid">
+      <div class="decision-card"><b>01 · Research</b>
+        <p>Test market demand, technical feasibility, vendor suitability, and financial assumptions.</p>
+      </div>
+      <div class="decision-card"><b>02 · Pilot</b>
+        <p>Start with limited products or audiences, measure outcomes, and learn before scaling.</p>
+      </div>
+      <div class="decision-card"><b>03 · Plan</b>
+        <p>Set milestones, owners, success measures, and a cross-functional change-management approach.</p>
+      </div>
+    </div>
+    <p class="section-kicker">08 / Original work</p>
+    <h2>Explore the full project</h2>
+    <p>The original report contains our app concepts, detailed technology research, Tableau dashboards, and financial
+      assumptions. The presentation summarizes the proposed strategy for an executive audience.</p>
     <div class="accordion-container">
-      <div class="accordion-item">
-        <button class="accordion-btn">Part 1: Digital Transformation Report (Executive Document)</button>
-        <div class="accordion-content">
-          <iframe src="nike-report.pdf"></iframe>
-        </div>
+      <div class="accordion-item"><button class="accordion-btn" type="button">Part 1 · Digital Transformation Report (25
+          pages)</button>
+        <div class="accordion-content"><a class="doclink" href="nike-report.pdf" rel="noopener" target="_blank">Open
+            report in a new tab ↗</a><iframe loading="lazy" src="nike-report.pdf"
+            title="Nike digital transformation report"></iframe></div>
       </div>
-
-      <div class="accordion-item">
-        <button class="accordion-btn">Part 2: Executive Presentation Slides</button>
-        <div class="accordion-content">
-          <!-- update this path to match your file location -->
-          <iframe src="nike-presentation.pdf"></iframe>
-        </div>
+      <div class="accordion-item"><button class="accordion-btn" type="button">Part 2 · Executive Presentation (16
+          slides)</button>
+        <div class="accordion-content"><a class="doclink" href="nike-presentation.pdf" rel="noopener"
+            target="_blank">Open slides in a new tab ↗</a><iframe loading="lazy" src="nike-presentation.pdf"
+            title="Nike digital transformation executive presentation"></iframe></div>
       </div>
     </div>
-
-    <h2>Reflection</h2>
-    <p>
-      This hypothetical Nike project helped me practice thinking like a digital transformation consultant rather than just a technology user.
-      Translating broad ideas such as IoT wearables or 4D-printed shoes into a phased roadmap with projected financial outcomes pushed me to connect
-      innovation with feasibility, cost, and risk. Building Tableau dashboards for projected revenues, costs, and operating expenses made the impact
-      of each initiative more concrete, while the mobile app mockups and subscription concepts highlighted how technology can be framed through
-      customer experience. Most importantly, this project reinforced how critical it is to balance ambitious ideas with data privacy, cybersecurity,
-      and change management considerations, especially when working with sensitive customer data and large-scale operational shifts. Although the
-      work is entirely hypothetical and not associated with Nike, it strengthened my confidence in structuring digital strategy proposals for
-      real-world organizations.
-    </p>
-
-    <div style="text-align: center">
-      <a href="../index.html#academic-projects" class="back-link">← Back to Portfolio</a>
-    </div>
+    <p class="section-kicker">09 / Reflection</p>
+    <h2>What this project taught me</h2>
+    <p>This project challenged me to think like a consultant: not simply to propose exciting technologies, but to ask
+      whether they solve a customer problem, create business value, and can be implemented responsibly.</p>
+    <p>Working on the 4D printing proposal showed me how much research is needed to move from an intriguing concept to a
+      feasible product. Building the financial projections helped me connect strategic ambition with costs, investment
+      timing, and measurable assumptions. The risk analysis also reminded me that cybersecurity, privacy, and organizational
+      readiness are central to any transformation.</p>
+    <p>Looking back, the biggest lesson was that <strong>digital transformation is as much about people, economics, and
+        execution as it is about technology.</strong></p>
+    <div style="text-align:center"><a class="back-link" href="../index.html#projects">← Back to Portfolio</a></div>
   </main>
-
-  <footer>
-    <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
+  <footer class="site-footer">
+    <p>© 2026 Anna Do. All rights reserved.</p>
   </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const accordions = document.querySelectorAll(".accordion-btn");
-    accordions.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          content.classList.remove("open");
-        } else {
-          document.querySelectorAll(".accordion-content").forEach((c) => {
-            c.style.maxHeight = null;
-            c.classList.remove("open");
-            c.previousElementSibling.classList.remove("active");
-          });
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("open");
-        }
-      });
-    });
-  </script>
+  <script src="../project.js"></script>
 </body>
+
 </html>

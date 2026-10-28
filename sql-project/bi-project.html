@@ -1,502 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Intelligence & Data Management Project - Anna Do</title>
-  <meta name="description" content="AdventureWorks2017 data analysis using SQL and Power BI. Project by Anna Do, Business Information Systems major at TCU.">
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdventureWorks Customer &amp; Product Sales Intelligence | Anna Do</title>
+  <meta name="description" content="SQL and Power BI business intelligence case study using AdventureWorks2017 sales data to analyze revenue, customers, products, territories, sales representatives, and average order value." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../project.css">
   <style>
-    :root {
-      --pink-600: #db2777;
-      --ribbon: #ffe4f0;
-      --bg: #fff8fb;
-      --sub-bg: #fff2f6;
-    }
-    
-    /* 🌸 Global EB Garamond theme */
-    body {
-      background: #fff8fb;
-      color: var(--text);
-      line-height: 1.75;
-      font-family: 'EB Garamond', serif;
-      font-size: 1.05rem;
-      letter-spacing: 0.1px;
-    }
+    /* Page-specific elements only. Shared project styling stays in project.css. */
+    .project-content .project-lede {font-size:1.15rem;color:#536C4C;line-height:1.75}
+    .project-content .metric-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0 32px}
+    .project-content .metric {padding:18px;background:#F0F4E9;border:1px solid #DCE5D5;border-radius:16px}
+    .project-content .metric strong {display:block;font:600 1.9rem/1.15 'EB Garamond',Georgia,serif;color:#3D493C}
+    .project-content .metric span {display:block;margin-top:8px;color:#536C4C;font-size:.88rem;line-height:1.5}
+    .project-content .analysis-card {background:#FFFEFA;border:1px solid #DCE5D5;border-radius:16px;padding:22px;margin:18px 0}
+    .project-content .analysis-card h3 {margin:0 0 10px;color:#536C4C;font-size:1.55rem}
+    .project-content .analysis-card p:last-child {margin-bottom:0}
+    .project-content .mini-label {display:block;color:#738D63;font:700 .75rem 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+    .project-content .note {background:#F0F4E9;border-left:3px solid #9EB493;border-radius:0 12px 12px 0;padding:14px 18px;margin:20px 0}
+    .project-content .steps {padding-left:24px}
+    .project-content .steps li {margin-bottom:9px}
+    .project-content .evidence-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
+    .project-content .evidence-grid figure {margin:0;padding:12px;background:#FFFEFA;border:1px solid #DCE5D5;border-radius:14px}
+    .project-content .evidence-grid img {display:block;width:100%;height:auto;border-radius:8px}
+    .project-content figcaption {font-size:.83rem;color:#738D63;line-height:1.5;margin-top:9px}
+    .project-content .visual-text .mini-label {margin-top:4px}
+    .project-content .visual-text p {margin-bottom:12px}
+    .project-content .visual-text h3 {font-style:normal}
+    .project-content .visual-carousel .visual-slide img {max-height:520px;object-fit:contain}
+    @media(max-width:600px){.project-content .metric-grid,.project-content .evidence-grid{grid-template-columns:1fr}.project-content .analysis-card{padding:16px}}
+      .marker-highlight {
+      background:
+        linear-gradient(
+          178deg,
+          transparent 5%,
+          rgba(250, 225, 125, 0.12) 10%,
+          rgba(250, 225, 125, 0.38) 25%,
+          rgba(255, 233, 154, 0.48) 55%,
+          rgba(250, 225, 125, 0.28) 85%,
+          transparent 97%
+        );
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
 
-    h1, h2, h3, p, ul, li, button, iframe {
-      font-family: "EB Garamond", serif !important;
+      padding: 3px 7px;
+      border-radius: 12px 7px 14px 9px;
     }
-    h1, h2, h3 {
-      font-weight: 700;
-      color: var(--pink-600);
-      letter-spacing: 0.3px;
-      margin-top: 1.5em;
-    }
-    p, ul, li {
-      font-weight: 400;
-      font-size: 1.05rem;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-    ul li::marker {
-      color: var(--pink-600);
-    }
-
-    /* 🌷 Header */
-    .project-header {
-      background: #fff4f8;
+    .site-footer {
       text-align: center;
-      padding: 22px 20px;
-      border-bottom: 1px solid #f8dce8;
-      max-width: 780px;
-      margin: 40px auto 30px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
+      padding: 30px 20px;
+      border-top: 1px solid #DCE5D5;
+      background: #F7F6EC;
     }
-    .project-header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px;
-    }
-    .project-header p {
-      font-size: 1rem;
-      color: #b05278;
+    .site-footer p {
       margin: 0;
-      line-height: 1.3;
-    }
-
-    /* 🌷 Content */
-    .project-content {
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-      line-height: 1.55;
-      font-size: 0.95rem;
-    }
-
-    /* 🎀 Main Ribbon Titles */
-    .project-content h2 {
-      position: relative;
-      display: inline-block;
-      background: var(--ribbon);
-      color: var(--pink-600);
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 6px 14px 6px 20px;
-      border-radius: 8px 20px 20px 8px;
-      margin: 24px 0 6px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
-    }
-    .project-content h2::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid var(--pink-600);
-    }
-
-        /* 🩰 Match BI Project bullet spacing */
-    .project-content ul {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 22px; /* same indent as BI project */
-      line-height: 1.45; /* tighter list spacing */
-    }
-
-    .project-content li {
-      margin-bottom: 2px; /* minimal space between items */
-    }
-
-    .screenshot {
-      margin: 10px 0;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.12);
-    }
-
-    .sql-block {
-      margin: 10px 0 12px;
       font-size: 0.85rem;
-      border-radius: 10px;
-      padding: 14px;
-      background: #fdf8fb;
-      border: 1px solid #f5d0e0;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.08);
+      color: #536C4C;
     }
-
-    .back-link {
-      margin-top: 24px;
-      font-size: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      color: var(--muted);
-      background: #fff;
-      font-family: 'EB Garamond', serif;
-    }
-
-    footer .sheep {
-      transition: transform 0.3s ease;
-    }
-
-    footer:hover .sheep {
-      transform: translateX(6px);
-    }
-
-    .sql-link {
-      color: #db2777;
-      text-decoration: underline;
-      font-style: italic;
-    }
-
-    .sql-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* exactly 3 per row */
-      gap: 12px 18px; /* small vertical, a bit wider horizontal spacing */
-      margin-top: 8px;
-      justify-items: center;
-    }
-
-    .sql-gallery img {
-      width: 75%;              /* nicely compact thumbnail size */
-      max-width: 220px;        /* controls total width */
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(244, 114, 182, 0.12);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .sql-gallery img:hover {
-      transform: scale(1.04);
-      box-shadow: 0 4px 10px rgba(244, 114, 182, 0.25);
-    }
-
-    /* Responsiveness for smaller screens */
-    @media (max-width: 850px) {
-      .sql-gallery {
-        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
-      }
-    }
-    @media (max-width: 550px) {
-      .sql-gallery {
-        grid-template-columns: 1fr; /* single column on phones */
-      }
-    }
-
-      /* 🌸 Visual Carousel — Clean, Working, and Centered */
-      .visual-carousel {
-        position: relative;
-        background: #fff8fb;
-        border-radius: 16px;
-        padding: 28px 28px 60px;  /* ⬅ bottom padding for arrows */
-        box-shadow: 0 4px 16px rgba(244, 114, 182, 0.1);
-        margin-top: 16px;
-        overflow: hidden;
-      }
-
-      /* Each slide (image + text stacked vertically) */
-      .visual-slide {
-        display: none;                     /* only one visible at a time */
-        flex-direction: column;            /* stack image above text */
-        align-items: center;
-        justify-content: center;
-        gap: 14px;                         /* soft space between image + text */
-        width: 100%;
-        transition: opacity 0.5s ease;
-      }
-
-      .visual-slide.active {
-        display: flex;                     /* show active slide */
-      }
-
-      /* Huge focus on visuals */
-      .visual-slide img {
-        width: 90%;                        /* ⬅️ BIG beautiful visuals */
-        height: auto;
-        border-radius: 14px;
-        box-shadow: 0 6px 16px rgba(244, 114, 182, 0.15);
-        transition: transform 0.3s ease;
-      }
-
-      .visual-slide img:hover {
-        transform: scale(1.02);
-      }
-
-      /* Captions under the image */
-      .visual-text {
-        width: 90%;
-        font-size: 1.05rem;
-        line-height: 1.6;
-        color: #444;
-        margin-top: 8px;
-        text-align: left;   
-      }
-
-      .visual-text h3 {
-        text-align: center; 
-        color: #db2777;
-        font-size: 1.05rem;
-        margin-bottom: 6px;
-        font-style: italic;
-      }
-
-
-      .visual-text p {
-        font-size: 1.05rem;
-        color: #444;
-        line-height: 1.5;
-      }
-
-      /* Navigation arrows — bottom-centered */
-      .nav {
-        position: absolute;
-        bottom: 14px;
-        background: rgba(255, 228, 240, 0.95);
-        border: none;
-        color: #db2777;
-        font-size: 1.4rem;
-        border-radius: 50%;
-        width: 34px;
-        height: 34px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 6px rgba(244, 114, 182, 0.25);
-        transition: background 0.2s ease, transform 0.2s ease;
-        z-index: 10;
-      }
-
-      .nav.prev { left: 45%; }
-      .nav.next { right: 45%; }
-
-      .nav:hover {
-        background: #fbcfe8;
-        transform: scale(1.1);
-      }
-
-      .nav.disabled {
-        opacity: 0.4;             /* look faded */
-        pointer-events: none;     /* can’t click */
-        background: #f8e6ef;      /* soft grey-pink background */
-        box-shadow: none;         /* no glow */
-      }
-
-      /* Responsive tweaks */
-      @media (max-width: 800px) {
-        .visual-slide {
-          flex-direction: column;
-        }
-        .visual-slide img, .visual-text {
-          width: 100%;
-        }
-        .nav.prev { left: 40%; }
-        .nav.next { right: 40%; }
-      }
-
+    footer{text-align:center;padding:30px;color:var(--muted)}
   </style>
 </head>
-
 <body>
-<header class="project-header">
-  <h1>Business Intelligence & Data Management Project</h1>
-  <p>AdventureWorks2017 · SQL + Power BI · Data Visualization & Analytics</p>
-</header>
+  <header class="project-header">
+    <h1>AdventureWorks Customer &amp; Product Sales Intelligence</h1>
+    <p>SQL · Power BI · Relational Data Modeling · Sales Analytics · Business Intelligence</p>
+  </header>
 
-<main class="project-content">
-  <h2>Project Overview</h2>
-  <p>This project explores data management and business intelligence techniques using the AdventureWorks2017 database. 
-     </p>
-  <p>
-    To gain high-impact and actionable insights, this project was guided by six key analytical questions:
-  </p>
-  <ul>
-    <li><b><i>Sales Trends Over Time:</i></b> How have total sales changed year over year?</li>
-    <li><b><i>Top Customers by Revenue:</i></b> Who are the top 10 customers driving sales?</li>
-    <li><b><i>Product Category Performance:</i></b> Which product categories generate the most revenue?</li>
-    <li><b><i>Geographic Insights:</i></b> Which regions or countries contribute the most to sales?</li>
-    <li><b><i>Employee Sales Performance:</i></b> Which sales representatives contribute the highest revenue?</li>
-    <li><b><i>Order Insights:</i></b> What is the average order value, and how does it vary across regions?</li>
-  </ul>
-
-
-  <h2>Tools & Skills</h2>
-  <ul>
-    <li>SQL (joins, aggregation, grouping, filtering).</li>
-    <li>Power BI (DAX measures, data modeling, visualization).</li>
-    <li>Data cleaning, ERD building, and KPI dashboard design.</li>
-  </ul>
-
-  <h2>Sample SQL Queries</h2>
-  <p>You can view my SQL script here:
-    <a href="sql-project/SQLProject-Anna.sql" target="_blank"
-          style="color:#db2777; text-decoration:underline; font-family:'EB Garamond',serif;
-          font-size:1rem; font-weight:600;">
-          SQLProject-Anna
-      </a>
-  </p>
-
-    <div class="sql-gallery">
-    <img src="issue-1-query.png" alt="Sales Trends Over Time Query Result">
-    <img src="issue-2-query.png" alt="Top Customers by Revenue Query Result">
-    <img src="issue-3-query.png" alt="Product Category Performance Query Result">
-    <img src="issue-4-query.png" alt="Geographic Insights Query Result">
-    <img src="issue-5-query.png" alt="Employee Sales Performance Query Result">
-    <img src="issue-6-query.png" alt="Order Insights Query Result">
-  </div>
-
-<h2>Visual Highlights and Insights</h2>
-
-<div class="visual-carousel">
-  <button class="nav prev">❮</button>
-
-<div class="visual-slide active">
-    <img src="issue-1-visual.png" alt="Total Sales By Year">
-    <div class="visual-text">
-      <h3><i>Total Sales By Year</i></h3>
-    <p>
-      From 2011 to 2013, total sales grew rapidly from $14M to $49M, showing strong momentum and expansion.<br>
-      In 2014, sales fell to $22M, breaking the growth trend - possibly due to market saturation or weaker product performance.<br>
-      This decline highlights the need to analyze factors behind the slowdown, such as product availability, pricing strategy, or regional contributions.
+  <main class="project-content">
+    <h2>01 · Project Overview</h2>
+    <p class="project-lede">
+      <span class="marker-highlight">
+      How can a business turn interconnected sales, customer, product, and territory records into a clearer picture of performance, as well as identify where to focus its next decisions?
+      </span>
     </p>
+    <p>In this academic business intelligence project, our team analyzed the <strong>AdventureWorks2017</strong> sample database. I used <strong>SQL</strong> to retrieve, join, and aggregate data from related tables, then developed <strong>Power BI</strong> visualizations to explore six questions covering revenue growth, customer concentration, product mix, geographic performance, sales representatives, and average order value.</p>
+    <div class="metric-grid" aria-label="Project at a glance">
+      <div class="metric"><strong>6</strong><span>Business questions explored through SQL and Power BI</span></div>
+      <div class="metric"><strong>$94.65M</strong><span>Sales attributed to Bikes in the category analysis</span></div>
+      <div class="metric"><strong>$3.92K</strong><span>Overall average order value in the SQL results</span></div>
     </div>
-  </div>
 
-  <div class="visual-slide">
-    <img src="issue-2-visual.png" alt="Top Customers Bar Chart">
-    <div class="visual-text">
-      <h3><i>Top 10 Customers by Total Sales</i></h3>
-      <p>Roger Harui leads with nearly $1M in sales, followed closely by Andrew Dixon and Reuben D’sa - showing a strong concentration among a few high-value customers.<br>
-      The gap between the top and bottom of the list (roughly $170K) suggests that a small customer segment contributes disproportionately to total revenue.<br><br>
-      This insight points to the importance of customer retention programs and personalized offers for these top buyers.</p>
+    <h2>02 · The Business Challenge</h2>
+    <p>Sales performance cannot be understood from a single total. A growing business also needs to know <strong>who buys, what sells, where revenue originates, which representatives drive results, and how order values vary</strong>. These dimensions are stored in different tables, so meaningful reporting requires connecting records through consistent keys and defining metrics at the correct level of detail.</p>
+    <p><strong>Guiding question:</strong> How can relational sales data be transformed into reliable, decision-ready views of business performance?</p>
+
+    <h2>03 · Dataset &amp; Analytical Assumptions</h2>
+    <p>The project used the <strong>AdventureWorks2017</strong> SQL Server database, including tables from the <code>Sales</code>, <code>Production</code>, <code>Person</code>, and <code>HumanResources</code> schemas. Important relationships included sales orders to customers, order lines to products, products to subcategories and categories, and orders to territories or sales representatives.</p>
+    <p>Before interpreting the results, I treated the source as sufficiently clean, complete, and accurate for exploratory analysis. For a production deployment, I would explicitly validate missing foreign keys, duplicate identifiers, unexpected join multiplication, reporting-period coverage, and consistency between order-header and line-item measures.</p>
+    <div class="note"><strong>Metric definitions matter:</strong> My order-level analyses use <code>SalesOrderHeader.TotalDue</code>, while product-category sales use <code>SalesOrderDetail.LineTotal</code>. Because these fields measure different amounts, their totals should not be compared as though they are identical revenue definitions.</div>
+
+    <h2>04 · My Role &amp; Technical Approach</h2>
+    <p>My contribution combined relational querying with dashboard design. Rather than beginning with charts, I started with the business question and traced the tables and fields needed to answer it.</p>
+    <ol class="steps">
+      <li><strong>Define the questions:</strong> Translate sales-performance objectives into six measurable analytical areas.</li>
+      <li><strong>Inspect table relationships:</strong> Identify join keys and one-to-many relationships across sales, customers, products, people, and territories.</li>
+      <li><strong>Write SQL queries:</strong> Use <code>INNER JOIN</code>, <code>GROUP BY</code>, <code>SUM()</code>, <code>AVG()</code>, date extraction, and <code>TOP 10</code> to produce reporting-ready results.</li>
+      <li><strong>Build Power BI visuals:</strong> Match the chart type to the question—line chart for time, horizontal bars for rankings, maps for geography, and a KPI card for average order value.</li>
+      <li><strong>Interpret findings:</strong> Explain the business implications and distinguish observed patterns from untested explanations.</li>
+    </ol>
+    <p><strong>SQL source:</strong> <a href="SQLProject-Anna.sql" target="_blank" rel="noopener noreferrer" class="sql-link">View my complete SQL script</a>.</p>
+
+    <h2>05 · Analysis &amp; Findings</h2>
+    <section class="analysis-card">
+      <span class="mini-label">01 · Time-series analysis</span>
+      <h3>Sales Trends Over Time</h3>
+      <p><strong>Business question:</strong> How did total sales change year over year?</p>
+      <p><strong>SQL approach:</strong> Group orders by <code>YEAR(OrderDate)</code> and calculate <code>SUM(TotalDue)</code>.</p>
+      <p><strong>Finding:</strong> The query returned approximately <strong>$14.16M in 2011</strong>, <strong>$37.68M in 2012</strong>, <strong>$48.97M in 2013</strong>, and <strong>$22.42M in 2014</strong>. Sales rose sharply through 2013, then appeared lower in 2014.</p>
+      <p><strong>Interpretation:</strong> The 2014 result should be checked for partial-year coverage before concluding that annual performance deteriorated. A stronger comparison would use equivalent year-to-date periods or monthly sales.</p>
+    </section>
+    <section class="analysis-card">
+      <span class="mini-label">02 · Customer analytics</span>
+      <h3>Top 10 Customers by Revenue</h3>
+      <p><strong>Business question:</strong> Which customers contributed the most sales?</p>
+      <p><strong>SQL approach:</strong> Join <code>SalesOrderHeader</code>, <code>Customer</code>, and <code>Person</code> to connect order values with customer names; aggregate totals and rank the top ten.</p>
+      <p><strong>Finding:</strong> <strong>Roger Harui ($989,401)</strong>, <strong>Andrew Dixon ($961,676)</strong>, and <strong>Reuben D'sa ($954,022)</strong> led the returned customer ranking.</p>
+      <p><strong>Recommendation:</strong> Explore repeat purchase behavior and customer profitability before designing targeted loyalty initiatives for high-revenue accounts.</p>
+    </section>
+    <section class="analysis-card">
+      <span class="mini-label">03 · Product portfolio</span>
+      <h3>Product Category Sales Performance</h3>
+      <p><strong>Business question:</strong> Which categories contribute the most product sales?</p>
+      <p><strong>SQL approach:</strong> Join order details to products, product subcategories, and categories; group by category and sum <code>LineTotal</code>.</p>
+      <p><strong>Finding:</strong> <strong>Bikes ($94.65M)</strong> dominated the category totals, compared with <strong>Components ($11.80M)</strong>, <strong>Clothing ($2.12M)</strong>, and <strong>Accessories ($1.27M)</strong>.</p>
+      <p><strong>Recommendation:</strong> Examine bike-category margins and the potential for complementary accessory sales; revenue alone does not determine profitability.</p>
+    </section>
+    <section class="analysis-card">
+      <span class="mini-label">04 · Geographic analysis</span>
+      <h3>Sales by Territory &amp; Region</h3>
+      <p><strong>Business question:</strong> Where are sales concentrated geographically?</p>
+      <p><strong>SQL approach:</strong> Join <code>SalesOrderHeader</code> to <code>SalesTerritory</code> using <code>TerritoryID</code>, then aggregate <code>TotalDue</code> by territory, country code, and region group.</p>
+      <p><strong>Finding:</strong> The mapped sales activity shows a strong presence in North America alongside activity in Europe and Australia. Map bubble sizes indicate geographic differences but do not, by themselves, explain their causes.</p>
+      <p><strong>Next step:</strong> Compare sales with market size, margins, and customer counts before recommending geographic expansion.</p>
+    </section>
+    <section class="analysis-card">
+      <span class="mini-label">05 · Sales team analytics</span>
+      <h3>Top Sales Representatives by Revenue</h3>
+      <p><strong>Business question:</strong> Which sales representatives generated the highest order totals?</p>
+      <p><strong>SQL approach:</strong> Connect sales orders to salesperson, employee, and person records; aggregate <code>TotalDue</code> by representative.</p>
+      <p><strong>Finding:</strong> <strong>Linda Mitchell ($11.70M)</strong> and <strong>Jillian Carson ($11.34M)</strong> led the chart, followed by <strong>Michael Blythe ($10.48M)</strong>.</p>
+      <p><strong>Interpretation:</strong> Representative totals are useful for identifying patterns, but fair performance comparisons should account for assigned territories, tenure, account portfolios, and sales opportunities.</p>
+    </section>
+    <section class="analysis-card">
+      <span class="mini-label">06 · Order economics</span>
+      <h3>Average Order Value by Region</h3>
+      <p><strong>Business question:</strong> What is the typical order value, and how does it vary by territory?</p>
+      <p><strong>SQL approach:</strong> Calculate <code>AVG(TotalDue)</code> overall and by joined sales territory.</p>
+      <p><strong>Finding:</strong> Overall average order value was approximately <strong>$3,915.99</strong>. The <strong>Central ($23.15K)</strong>, <strong>Northeast ($22.22K)</strong>, and <strong>Southeast ($18.28K)</strong> territories had much higher averages than most other territories.</p>
+      <p><strong>Next step:</strong> Examine order counts and the distribution of order sizes to determine whether a small number of unusually large orders is driving these averages.</p>
+    </section>
+
+    <h2>06 · Power BI Visual Highlights</h2>
+    <p>These visuals translate the six SQL analyses into a more accessible reporting experience. Use the arrows to browse the dashboard highlights.</p>
+    <div class="visual-carousel">
+      <button class="nav prev" type="button" aria-label="Previous visual">❮</button>
+      <div class="visual-slide active">
+        <img src="issue-1-visual.png" alt="Line chart showing annual total sales from 2011 to 2014" loading="lazy">
+        <div class="visual-text"><h3>Total Sales by Year</h3><p>Sales grew from roughly $14M in 2011 to $49M in 2013. The lower 2014 total needs a reporting-period check before it can be interpreted as a full-year decline.</p></div>
+      </div>
+      <div class="visual-slide">
+        <img src="issue-2-visual.png" alt="Bar chart ranking the top ten customers by sales" loading="lazy">
+        <div class="visual-text"><h3>Top 10 Customers</h3><p>Roger Harui ranked first at approximately $989K. The ranking highlights customers to investigate further for retention and account-level profitability.</p></div>
+      </div>
+      <div class="visual-slide">
+        <img src="issue-3-visual.png" alt="Column chart comparing Bikes, Components, Clothing, and Accessories sales" loading="lazy">
+        <div class="visual-text"><h3>Product Category Performance</h3><p>Bikes contributed approximately $94.65M in line-item sales, far exceeding the other three categories.</p></div>
+      </div>
+      <div class="visual-slide">
+        <img src="issue-4-global.png" alt="Global map showing AdventureWorks sales territories" loading="lazy">
+        <div class="visual-text"><h3>Global Sales Performance</h3><p>The global view places territory-level sales in geographic context, with visible activity in North America, Europe, and Australia.</p></div>
+      </div>
+      <div class="visual-slide">
+        <img src="issue-4-us.png" alt="Closer view of AdventureWorks sales bubbles across the United States" loading="lazy">
+        <div class="visual-text"><h3>United States Territory Detail</h3><p>A closer map view helps communicate variation across U.S. territories.</p></div>
+      </div>
+      <div class="visual-slide">
+        <img src="issue-4-europe.png" alt="Closer view of AdventureWorks sales bubbles across European territories" loading="lazy">
+        <div class="visual-text"><h3>European Territory Detail</h3><p>Zooming into Europe makes individual territories easier to compare than on the global map.</p></div>
+      </div>
+      <div class="visual-slide">
+        <img src="issue-5-visual.png" alt="Horizontal bar chart ranking sales representatives by revenue" loading="lazy">
+        <div class="visual-text"><h3>Sales Representatives by Revenue</h3><p>Linda Mitchell and Jillian Carson lead the sales-representative ranking, with approximately $11.70M and $11.34M respectively.</p></div>
+      </div>
+      <div class="visual-slide">
+        <img src="issue-6-visual.png" alt="Average order value KPI and regional comparison chart" loading="lazy">
+        <div class="visual-text"><h3>Average Order Value by Territory</h3><p>The overall average is $3.92K, but the highest territory averages are considerably larger; thus this is an important reason to investigate order-size distributions.</p></div>
+      </div>
+      <button class="nav next" type="button" aria-label="Next visual">❯</button>
     </div>
-  </div>
 
-  <div class="visual-slide">
-    <img src="issue-3-visual.png" alt="Product Categories Sale Column Chart">
-    <div class="visual-text">
-      <h3><i>Product Category Sales Performance</i></h3>
-      <p>Bikes overwhelmingly dominate total revenue at $94.65M, making up the majority of overall sales. 
-      Components contribute $11.8M, while Clothing and Accessories remain much smaller segments at $2.1M and $1.27M respectively.<br><br>
-      This strong imbalance indicates that AdventureWorks’ success heavily depends on the bike category. 
-      Diversifying product focus or expanding underperforming categories could reduce risk and create more stable growth opportunities.</p>
+    <h2>07 · Behind the Analysis: SQL &amp; Data Relationships</h2>
+    <p>These selected screenshots show the data model and SQL results underlying the Power BI visuals. They illustrate how I connected tables and checked query outputs before presenting findings.</p>
+    <div class="evidence-grid">
+      <figure><img src="issue-2-erd.png" alt="Relationships connecting sales orders, customers, and person records" loading="lazy"><figcaption>Customer analysis: joining order headers, customer records, and names.</figcaption></figure>
+      <figure><img src="issue-3-erd.png" alt="Relationships connecting order details to products, subcategories, and categories" loading="lazy"><figcaption>Product analysis: rolling line-item sales up through the product hierarchy.</figcaption></figure>
+      <figure><img src="issue-4-erd.png" alt="Relationship between sales order headers and territories" loading="lazy"><figcaption>Geographic analysis: connecting orders to territory attributes.</figcaption></figure>
+      <figure><img src="issue-6-erd.png" alt="Relationship between sales order headers and territories for average order value" loading="lazy"><figcaption>Order value analysis: calculating averages at the territory level.</figcaption></figure>
+      <figure><img src="issue-1-query.png" alt="SQL results showing annual sales totals from 2011 to 2014" loading="lazy"><figcaption>SQL output: year-over-year sales totals.</figcaption></figure>
+      <figure><img src="issue-6-query.png" alt="SQL results showing average order value by territory and overall" loading="lazy"><figcaption>SQL output: territory averages and the $3,915.99 overall average.</figcaption></figure>
     </div>
-  </div>
+    <p>For the full query logic (including customer rankings, product-category joins, territory aggregations, and salesperson analysis) please see the <a href="SQLProject-Anna.sql" target="_blank" rel="noopener noreferrer">SQL script</a>.</p>
 
-  <div class="visual-slide">
-    <img src="issue-4-global.png" alt="Global Sales Map">
-    <div class="visual-text">
-      <h3><i>Global Sales Performance</i></h3>
-      <p>The map reveals a strong concentration of sales in North America, led by the U.S. Southwest territory with over $27M in revenue. 
-      Other top-performing regions include Canada and the U.S. Northwest, while European markets like the U.K. and France contribute moderate sales volumes.<br><br>
-      This pattern indicates that AdventureWorks’ success is heavily anchored in North America, with room to expand presence in Europe and Asia-Pacific. 
-      Targeted regional marketing and distribution strategies could help balance the company’s global performance.</p>
-    </div>
-  </div>
+    <h2>08 · Business Recommendations</h2>
+    <ul>
+      <li><strong>Customer strategy:</strong> Explore loyalty and account-management opportunities among high-revenue customers, while evaluating margins and repeat purchasing.</li>
+      <li><strong>Product strategy:</strong> Monitor the strong concentration in Bikes and investigate cross-category opportunities with Components and Accessories.</li>
+      <li><strong>Regional strategy:</strong> Compare territory sales and average order values with customer counts, market potential, and operating costs.</li>
+      <li><strong>Sales operations:</strong> Investigate practices used by high-performing representatives while accounting for differences in territory assignments.</li>
+      <li><strong>Reporting:</strong> Standardize metric definitions and introduce comparable reporting periods for more reliable trend analysis.</li>
+    </ul>
 
-   <div class="visual-slide">
-    <img src="issue-5-visual.png" alt="Employee Sales Performance Bar Chart">
-    <div class="visual-text">
-      <h3><i>Top Sales Representatives by Revenue</i></h3>
-      <p>Linda Mitchell and Jillian Carson lead with $11.7M and $11.3M in total sales, standing out well above the rest of the team. 
-      The next top performers - Michael Blythe, Jae Pak, and Tsvi Reiter - each generate between $8M and $10M, showing a strong upper-tier cluster.<br><br>
-      This ranking highlights a clear top-heavy distribution where a few high achievers drive the majority of revenue. 
-      It suggests an opportunity to analyze what drives their success, such as client portfolio or territory, and apply those insights to elevate mid-tier performers.</p>
-    </div>
-  </div>
+    <h2>09 · Limitations &amp; Next Steps</h2>
+    <p>This was an exploratory analysis of a sample database, not a live business deployment. The charts reveal descriptive patterns; they do not establish causality or prove that a recommendation will increase revenue.</p>
+    <ul>
+      <li><strong>Validate time coverage:</strong> Confirm whether 2014 includes a complete year before comparing annual totals.</li>
+      <li><strong>Reconcile metrics:</strong> Document the difference between <code>TotalDue</code> and <code>LineTotal</code> and use consistent measures when comparing analyses.</li>
+      <li><strong>Test data relationships:</strong> Check join cardinality, missing records, and order-versus-line-item grain.</li>
+      <li><strong>Deepen customer analysis:</strong> Add repeat-purchase rates, customer lifetime value, and margin measures.</li>
+      <li><strong>Improve decision support:</strong> Add drill-through dashboards, date filters, and regular refreshes to make the reporting more useful over time.</li>
+    </ul>
 
-   <div class="visual-slide">
-    <img src="issue-6-visual.png" alt="Average Order Value by Region">
-    <div class="visual-text">
-      <h3><i>Average Order Value by Region</i></h3>
-      <p>The Central and Northeast U.S. regions show exceptionally high average order values - around $23K and $22K - far exceeding the global mean of $3.9K. 
-      This suggests larger or more premium orders concentrated in these areas.<br><br>
-      In contrast, international markets such as Germany and Australia report lower order values, indicating smaller or more frequent purchases. 
-      The data highlights clear regional differences in customer purchasing power and order size, offering valuable input for pricing and sales strategy adjustments.</p>
-    </div>
-  </div>
-
-  <!-- You can keep adding more slides the same way! -->
-
-  <button class="nav next">❯</button>
-</div>
-
-<h2>Reflection</h2>
-<p>
-  Working on this Business Intelligence project taught me how to connect raw data to meaningful stories.  
-  Beyond writing SQL and building Power BI visuals, I learned how to translate complex datasets into insights that reveal business patterns, performance drivers, and opportunities for improvement.  
-  This project strengthened my analytical thinking and my ability to communicate findings clearly - skills I now bring into every data-driven project I approach.
-</p>
-
-<div style="text-align:center; margin-top:32px;">
-  <a href="../index.html#academic-projects"
-     class="back-link"
-     style="font-style:italic; text-decoration:underline; color:#db2777; font-family:'EB Garamond',serif;">
-    ← Back to Portfolio
-  </a>
-</div>
-
-</main>
-
-<footer>
-  <div>© <span id="year"></span> Anna Do <span class="sheep">🐑</span></div>
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const slides = document.querySelectorAll('.visual-slide');
-  const next = document.querySelector('.next');
-  const prev = document.querySelector('.prev');
-  let index = 0;
-
-  function showSlide(i) {
-    slides.forEach(s => s.classList.remove('active'));
-    slides[i].classList.add('active');
-
-    // disable arrows if at first or last slide
-    if (i === 0) {
-      prev.classList.add('disabled');
-    } else {
-      prev.classList.remove('disabled');
-    }
-
-    if (i === slides.length - 1) {
-      next.classList.add('disabled');
-    } else {
-      next.classList.remove('disabled');
-    }
-  }
-
-  next.addEventListener('click', () => {
-    if (index < slides.length - 1) {
-      index++;
-      showSlide(index);
-    }
-  });
-
-  prev.addEventListener('click', () => {
-    if (index > 0) {
-      index--;
-      showSlide(index);
-    }
-  });
-
-  // initialize on load
-  showSlide(index);
-</script>
-
-
+    <h2>10 · Reflection</h2>
+    <p>This project helped me see SQL and Power BI as two parts of the same analytical process. SQL made it possible to turn a relational database into clearly defined measures, while Power BI challenged me to choose visuals that communicated each result effectively.</p>
+    <p>More importantly, I learned that a convincing chart is only as reliable as the relationships and assumptions behind it. Understanding the underlying data, checking how a metric is calculated, and communicating limitations are essential parts of making analysis useful to decision-makers.</p>
+    <div style="text-align:center"><a href="../index.html#projects" class="back-link">← Back to Portfolio</a></div>
+  </main>
+  <script src="../project.js"></script>
 </body>
 </html>
