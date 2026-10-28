@@ -1,0 +1,1 @@
+Put JPG, JPEG, PNG, WEBP, or GIF photos in this folder. Then commit and push.

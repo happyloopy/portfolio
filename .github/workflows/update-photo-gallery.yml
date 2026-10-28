@@ -1,0 +1,35 @@
+name: Update Little Corner photo gallery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'images/little-corner/collections/**'
+      - 'scripts/generate_photos.py'
+      - '.github/workflows/update-photo-gallery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out portfolio
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Generate photo list
+        run: python3 scripts/generate_photos.py
+      - name: Commit updated photo list
+        run: |
+          if git diff --quiet -- photos.json; then
+            echo "Photo list is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add photos.json
+          git commit -m "Update Little Corner photo gallery"
+          git push
