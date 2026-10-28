@@ -913,3 +913,40 @@ h1,h2,h3,.brand,.stat-number { font-family: 'EB Garamond', Georgia, serif; }
 footer{text-align:center;padding:30px;color:var(--muted)}
 
 
+/* Mobile hamburger navigation */
+@media (max-width: 768px) {
+  .site-header .nav {
+    position: relative;
+  }
+
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 101;
+  }
+
+  #primary-nav {
+    display: none;
+  }
+
+  #primary-nav.open {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    padding: 20px;
+    background: #F7F6EC;
+    border: 1px solid #DCE5D5;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 10px 25px rgba(61, 73, 60, 0.12);
+    z-index: 100;
+  }
+}
+
