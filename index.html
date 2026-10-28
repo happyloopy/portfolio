@@ -987,6 +987,38 @@
   <p>© 2026 Anna Do. All rights reserved.</p>
 </footer>
 
+
+<script>
+  // Mobile navigation
+  const menuButton = document.querySelector('.hamburger-btn');
+  const mobileNav = document.querySelector('#primary-nav');
+
+  if (menuButton && mobileNav) {
+    menuButton.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute(
+        'aria-label',
+        isOpen ? 'Close menu' : 'Open menu'
+      );
+
+      menuButton.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Close menu after selecting a navigation link
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open menu');
+        menuButton.textContent = '☰';
+      });
+    });
+  }
+</script>
+
+
 </body>
 
 </html>
